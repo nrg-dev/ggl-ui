@@ -2,7 +2,7 @@ Local Path
 ----------
 http://localhost:8091/user-portal/                     
 
-path was changed on url.ts file 
+path was change on (src -> app -> _services -> url.ts ) file 
 
 Install Npm Command
 ---------------------------
