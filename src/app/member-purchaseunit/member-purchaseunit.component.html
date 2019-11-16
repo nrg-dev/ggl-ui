@@ -1,0 +1,476 @@
+<app-memberheader></app-memberheader>
+<div class="col-sm-12 col-lg-12"style="background-image: url('/assets/images/GGL-Background.jpg');height:auto;">
+  <br/><br/><br/><br/><br/>
+  <div class="container">
+    <div class="col-lg-3" style="margin-top: -50px;">
+        <div class="row">
+          <img src="./assets/images/gglLogo.png" style="padding-left: 85px;" />
+        </div>
+        <br/><br/>
+        <div class="row" style="background: #2525af;padding: 10px;" [routerLink]="['/member-purchaseunit']">
+          <a id="editprofilebutton" style="color: white;">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span style="padding-left: 15px;">Purchase Unit</span> 
+          </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/memberunitstatus']">
+            <a id="myprofilebutton">
+                <i class="fa fa-superpowers" aria-hidden="true"></i> <span style="padding-left: 15px;">My Status</span>        
+            </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/member-payment']">
+          <a id="myprofilebutton">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span style="padding-left: 15px;">Payment Option</span>        
+          </a>
+      </div>
+    </div>
+
+    <div class="col-lg-9" id="align-table">
+      <div style="background: #f7fbfa;margin-top: 15px;">
+        <div style="margin-left: 90px;">
+            <div class="row" id="purchase-div">
+                <button class="tablink" id="defaultOpen" [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">Public Tree</button>
+                <button class="tablink" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'">Own Tree</button>
+                <button class="tablink" [class.active]="viewMode == 'tab3'" rel="tab3" (click)="viewMode ='tab3'">Private Tree</button>
+                <button class="tablink" [class.active]="viewMode == 'tab4'" rel="tab4" (click)="viewMode ='tab4'">Mini Tree</button>
+                <div class="tab-slider--container" [ngSwitch]="viewMode">
+                  <!-- Public Tree Tab 1 Starting -->
+                    <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+                      <!-- Div 1 Starting -->
+                      <div style="margin-top: 80px;" *ngIf="div1">
+                        <div style="margin-left: 65px;">
+                            <p>Product Description</p>
+                        </div>
+                        <div style="margin-left: 100px;">
+                            <p style=" margin: 0px;">Buy Fund Seed Public Tree SGD 100 you will be paid SGD 400 upon completion of </p>
+                            <p style=" margin: 0px;">the program with no time limit.</p>
+                            <p style=" margin: 0px;">You will automatically be registered again to get the next reward </p>
+                            <p style=" margin: 0px;">Every new 8 Subscriptions, 1 Member will receive the reward </p>
+                            <p style=" margin: 0px;">Benefits for member: </p>
+                            <br/>
+                            <p id="p-benefit">•Fund Seed in public sharing capitals program and queue up for your </p>
+                            <p id="p-benefit">•Fund Seed In your own sharing capitals program by investing minimum of SGD1000.  </p>
+                            <p id="p-benefit">•Fund Seed in your friends sharing capitals program by inputting their member ID. </p>
+                        </div>
+                        <br/>
+                        <form name="publicTreeform" (ngSubmit)="f.form.valid && createPublicUnit(this.model.numberofUnit)" #f="ngForm" novalidate>
+                          <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-2"> Select Unit </div>
+                            <div class="col-lg-1">
+                                <label style="color: white;">:</label>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group" [ngClass]="{'has-error':f.submitted && !numberofUnit.valid}">
+                                <select class="form-control" name ="numberofUnit" style="height: 30px;margin-top: -7px;" [(ngModel)]="this.model.numberofUnit" #numberofUnit="ngModel" (change)="getPrice(this.model.numberofUnit)" required>
+                                    <option *ngFor="let itemUnit of uniteList" value="{{ itemUnit }}"> {{ itemUnit }} </option> 
+                                </select>
+                                <div *ngIf="f.submitted && !numberofUnit.valid" class="help-block"> Unit is required.</div>
+                            </div>
+                            </div>
+                          </div>
+                          <br/>
+                          <div class="row">
+                              <div class="col-lg-1"></div>
+                              <div class="col-lg-2">Price</div>
+                                <div class="col-lg-1">
+                                    <label style="color: white;">:</label>
+                                </div>
+                                <div class="col-lg-4"> SGD &nbsp;&nbsp; {{ this.model.price }}  </div>
+                          </div>
+                          <br/><br/><br/>
+                          <div style="text-align:center">  
+                            <button class="submitButton">Purchase</button>
+                          </div>
+                        </form>
+                      </div>
+                      <!-- Div 1 Ending -->
+
+                      <!-- Div 6 Starting -->
+                      <div style="margin-top: 80px;" *ngIf="div6">
+                          <div style="margin-left: 50px;">
+                            <a (click)="selectPublic()" style="color:white;">&laquo; Previous</a>
+                            <br/><br/>
+                            <div  style="width: 660px;">
+                              <div class="panel-heading">
+                                  <h3>Public Tree | Unit Invoice</h3>
+                              </div>
+                              <div class="panel-footer">
+                                  <label>   Thank you for buy the Unit from GGL Investment:</label>
+                                  <br/>
+                                  <div *ngFor="let invoice of invoiceList">
+                                    <h5>  Unit Invoice Number #: {{ invoice.invoiceNumber }} </h5>
+                                  </div>  
+                                  <label>  Amount Details : {{ this.model.totalAmount }}  SGD </label>
+                                  <br/>
+                                  <label> Note </label> <br/>
+                                  <label> Please make the payment via Wire transfer or Online payment </label> 
+                                  <br/>
+                                  <label> For and on behalf of </label> <br/>
+                                  <label> Global Gains Limited </label> <br/>                                    
+                                </div>
+                              </div>
+                              <br/>
+                              <div style="text-align: center;">
+                                <button class="submitButton" id="singleUnit" (click)="selectPublic()">Done</button>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- Div 6 Ending -->
+                    </div>
+                    <!-- Public Tree Tab 1 Ending -->
+
+                    <!-- Own Tree Tab 2 Starting -->
+                    <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                      <!-- Div 2 Starting -->
+                      <div style="margin-top: 40px;" *ngIf="div2">
+                          <br/><br/>
+                          <div style="margin-left: 65px;">
+                              <p>Product Description</p>
+                          </div>
+                          <div style="margin-left: 100px;">
+                              <p style=" margin: 0px;">You must use Own Tree to run Private Tree </p>
+                              <p style=" margin: 0px;">You will get a number to register with Private Tree </p>
+                              <p style=" margin: 0px;">If you have registered, you can buy the Units in Private Tree </p>
+                          </div>
+                          <br/><br/><br/><br/>
+                          <form name="publicTreeform" (ngSubmit)="f.form.valid && createOwnTree(this.model.numberofUnit)" #f="ngForm" novalidate>
+                            <div class="row" style="margin-left: -10px;">
+                              <div class="col-lg-1"></div>
+                              <div class="col-lg-3"> Select Unit </div>
+                              <div class="col-lg-1">
+                                  <label style="color: white;">:</label>
+                              </div>
+                              <div class="col-lg-4">
+                                  <div class="form-group" [ngClass]="{'has-error':f.submitted && !numberofUnit.valid}">
+                                  <select class="form-control" name ="numberofUnit" style="height: 30px;margin-top: -7px;" [(ngModel)]="this.model.numberofUnit" #numberofUnit="ngModel" (change)="getPrice(this.model.numberofUnit)" required>
+                                      <option *ngFor="let itemUnit of uniteList" value="{{ itemUnit }}"> {{ itemUnit }} </option> 
+                                  </select>
+                                  <div *ngIf="f.submitted && !numberofUnit.valid" class="help-block"> Unit is required.</div>
+                              </div>
+                              </div>
+                            </div>
+                            <br/>
+                            <div class="row" style="margin-left: -10px;">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-3">Price </div>
+                                  <div class="col-lg-1">
+                                      <label style="color: white;">:</label>
+                                  </div>
+                                  <div class="col-lg-4"> SGD &nbsp;&nbsp; {{ this.model.price }}  </div>
+                            </div>
+                            <br/><br/><br/><br/><br/><br/>
+                            <div style="text-align:center">  
+                              <button class="submitButton">Purchase</button>
+                            </div>
+                          </form>
+                        </div>
+                        <!-- Div 2 Ending -->
+                        <!-- Div 7 Starting -->
+                        <div style="margin-top: 80px;" *ngIf="div7">
+                          <div style="margin-left: 50px;">
+                            <a (click)="selectOwnTree()" style="color:white;">&laquo; Previous</a>
+                            <br/><br/>
+                            <div  style="width: 660px;">
+                              <div class="panel-heading">
+                                  <h3>Own Tree | Unit Invoice</h3>
+                              </div>
+                              <div class="panel-footer">
+                                  <label> Thank you for buy the Unit from GGL Investement:</label>
+                                  <br/>
+                                  <label>  Tree Name #: {{ this.model.treeName }} </label>
+                                  <div *ngFor="let invoice of invoiceList">
+                                    <h5>  Unit Invoice Number #: {{ invoice.invoiceNumber }} </h5>
+                                  </div>  
+                                  <label> Amount Details : {{ this.model.totalAmount }}  SGD  </label>
+                                  <br/>
+                                  <label> Note </label> <br/>
+                                  <label> Please make the payment via Wire transfer or Online payment </label> 
+                                  <br/> <br/> <br/>
+                                  <label> For and on behalf of </label> <br/>
+                                  <label> Global Gains Limited </label> <br/>                                    
+                                </div>
+                              </div>
+                              <br/>
+                              <div style="text-align: center;">
+                                <button class="submitButton" id="singleUnit" (click)="selectOwnTree()">Done</button>
+                              </div>
+                            </div>
+                        </div>
+                        <!-- Div 7 Ending -->
+                    </div>
+                    <!-- Own Tree Tab 2 Ending -->
+
+                    <!-- Private Tree Tab 3 Starting -->
+                    <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">  
+                        <!-- Div 3 Starting -->
+                        <div style="margin-top: 40px;" *ngIf="div3">
+                            <br/><br/>
+                            <div style="margin-left: 65px;">
+                                <p>Product Description</p>
+                            </div>
+                            <div style="margin-left: 100px;">
+                                <p style=" margin: 0px;">You must find your own members to reach 8 members  </p>
+                                <p style=" margin: 0px;">For SGD 100 deposits you will be given SGD 400 capital after completing the capital program.</p>
+                                <p style=" margin: 0px;"> Every 8 new Subscriptions, 1 Member will receive capital </p>
+                                <p style=" margin: 0px;">Benefits for members:  </p>
+                                <br/>
+                                <p id="p-benefit">•Deposit in the capital program to get your business capital</p>
+                                <p id="p-benefit">•Deposit in a capital program with your relatives, friends and neighbors</p>
+                            </div>
+                            <br/>
+                            <br/>
+                            <form name="publicTreeform" (ngSubmit)="f.form.valid && privateTree()" #f="ngForm" novalidate>
+                              <div class="row" style="margin-left: -10px;">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-3">Own Tree Number* </div>
+                                <div class="col-lg-1">
+                                    <label style="color: white;">:</label>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="form-group" [ngClass]="{'has-error':f.submitted && !refmemberID.valid}">
+                                      <input type="text" class="form-control" placeholder="Eg-GSP10" name="refmemberID" [(ngModel)]="model.refmemberID" #refmemberID="ngModel" required />
+                                    <div *ngIf="f.submitted && !refmemberID.valid" class="help-block"> GSP Number is required.</div>
+                                </div>
+                                </div>
+                              </div>
+                              
+                              <div class="row" style="margin-left: -10px;">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-3"> Select Unit </div>
+                                <div class="col-lg-1">
+                                    <label style="color: white;">:</label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group" [ngClass]="{'has-error':f.submitted && !numberofUnit.valid}">
+                                    <select class="form-control" name ="numberofUnit" style="height: 30px;margin-top: -7px;" [(ngModel)]="this.model.numberofUnit" #numberofUnit="ngModel" (change)="getPrice(this.model.numberofUnit)" required>
+                                        <option *ngFor="let itemUnit of uniteList" value="{{ itemUnit }}"> {{ itemUnit }} </option> 
+                                    </select>
+                                    <div *ngIf="f.submitted && !numberofUnit.valid" class="help-block"> Unit is required.</div>
+                                </div>
+                                </div>
+                              </div>
+                              <div class="row" style="margin-left: -10px;">
+                                  <div class="col-lg-1"></div>
+                                  <div class="col-lg-3"> Price </div>
+                                    <div class="col-lg-1">
+                                        <label style="color: white;">:</label>
+                                    </div>
+                                    <div class="col-lg-4"> SGD &nbsp;&nbsp; {{ this.model.price }}  </div>
+                              </div>
+                              <br/>
+                              <div style="text-align:center">  
+                                <button class="submitButton">Purchase</button>
+                              </div>
+                            </form>
+                          </div>
+                          <!-- Div 3 Ending -->
+                          <!-- Div 8 Starting -->
+                          <div style="margin-top: 80px;" *ngIf="div8">
+                            <div style="margin-left: 50px;">
+                              <a (click)="selectPrivate()" style="color:white;">&laquo; Previous</a>
+                              <br/><br/>
+                              <div  style="width: 660px;">
+                                <div class="panel-heading">
+                                    <h3>Private Tree | Unit Invoice</h3>
+                                </div>
+                                <div class="panel-footer">
+                                    <label> Thank you for buy the Unit from GGL Investement:</label>
+                                    <br/>
+                                    <div *ngFor="let invoice of invoiceList">
+                                      <h5>  Unit Invoice Number #: {{ invoice.invoiceNumber }} </h5>
+                                    </div>  
+                                    <label> Amount Details : {{ this.model.totalAmount }}  SGD </label>
+                                    <br/>
+                                    <label> Note </label> <br/>
+                                    <label> Please make the payment via Wire transfer or Online payment </label> 
+                                    <br/>
+                                    <label> For and on behalf of </label> <br/>
+                                    <label> Global Gains Limited </label> <br/>                                    
+                                  </div>
+                                </div>
+                                <br/>
+                                <div style="text-align: center;">
+                                  <button class="submitButton" id="singleUnit" (click)="selectPrivate()">Done</button>
+                                </div>
+                              </div>
+                          </div>
+                          <!-- Div 8 Ending -->
+                      </div>
+                      <!-- Private Tree Tab 3 Ending -->
+
+                      <!--  Mini Tree Tab 4 Starting -->
+                      <div id="tab4" class="tab-slider--body" *ngSwitchCase="'tab4'">  
+                        <!-- Div 4 Starting -->
+                        <div style="margin-top: 80px;" *ngIf="div4">
+                          <div style="margin-left: 65px;">
+                              <p>Product Description</p>
+                          </div>
+                          <div style="margin-left: 100px;">
+                              <p style=" margin: 0px;">Buy Fund Seed Mini Tree SGD 100 you will be paid SGD 100 upon completion of </p>
+                              <p style=" margin: 0px;">the program with no time limit.</p>
+                              <p style=" margin: 0px;">You will automatically be registered again to get the next reward </p>
+                              <p style=" margin: 0px;">Every new 3 Subscriptions, 1 Member will receive the reward </p>
+                              <p style=" margin: 0px;">Benefits for member: </p>
+                              <br/>
+                              <p id="p-benefit">•Fund Seed in public sharing capitals program and queue up for your </p>
+                              <p id="p-benefit">•Fund Seed In your own sharing capitals program by investing minimum of SGD 100.  </p>
+                              <p id="p-benefit">•Fund Seed in your friends sharing capitals program by inputting their member ID. </p>
+                          </div>
+                          <br/>
+                          <form name="publicTreeform" (ngSubmit)="f.form.valid && createMiniUnit(this.model.numberofUnit)" #f="ngForm" novalidate>
+                            <div class="row">
+                              <div class="col-lg-1"></div>
+                              <div class="col-lg-2"> Select Unit </div>
+                              <div class="col-lg-1">
+                                  <label style="color: white;">:</label>
+                              </div>
+                              <div class="col-lg-4">
+                                  <div class="form-group" [ngClass]="{'has-error':f.submitted && !numberofUnit.valid}">
+                                  <select class="form-control" name ="numberofUnit" style="height: 30px;margin-top: -7px;" [(ngModel)]="this.model.numberofUnit" #numberofUnit="ngModel" (change)="getPrice(this.model.numberofUnit)" required>
+                                      <option *ngFor="let itemMiniUnit of miniunitList" value="{{ itemMiniUnit }}"> {{ itemMiniUnit }} </option> 
+                                  </select>
+                                  <div *ngIf="f.submitted && !numberofUnit.valid" class="help-block"> Unit is required.</div>
+                              </div>
+                              </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-lg-1"></div>
+                                <div class="col-lg-2">Price</div>
+                                  <div class="col-lg-1">
+                                      <label style="color: white;">:</label>
+                                  </div>
+                                  <div class="col-lg-4"> SGD &nbsp;&nbsp; {{ this.model.price }}  </div>
+                            </div>
+                            <br/><br/><br/>
+                            <div style="text-align:center">  
+                              <button class="submitButton">Purchase</button>
+                            </div>
+                          </form>
+                        </div>
+                        <!-- Div 1 Ending -->
+  
+                        <!-- Div 6 Starting -->
+                        <div style="margin-top: 80px;" *ngIf="div9">
+                            <div style="margin-left: 50px;">
+                              <a (click)="selectMini()" style="color:white;">&laquo; Previous</a>
+                              <br/><br/>
+                              <div  style="width: 660px;">
+                                <div class="panel-heading">
+                                    <h3>Mini Tree | Unit Invoice</h3>
+                                </div>
+                                <div class="panel-footer">
+                                    <label>   Thank you for buy the Unit from GGL Investment:</label>
+                                    <br/>
+                                    <div *ngFor="let invoice of invoiceList">
+                                      <h5>  Unit Invoice Number #: {{ invoice.invoiceNumber }} </h5>
+                                    </div>  
+                                    <label>  Amount Details : {{ this.model.totalAmount }}  SGD </label>
+                                    <br/>
+                                    <label> Note </label> <br/>
+                                    <label> Please make the payment via Wire transfer or Online payment </label> 
+                                    <br/>
+                                    <label> For and on behalf of </label> <br/>
+                                    <label> Global Gains Limited </label> <br/>                                    
+                                  </div>
+                                </div>
+                                <br/>
+                                <div style="text-align: center;">
+                                  <button class="submitButton" id="singleUnit" (click)="selectMini()">Done</button>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- Div 6 Ending -->
+                      </div>
+                      <!-- Mini Tree Tab 4 Ending -->
+
+
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br/><br/><br/>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':networkissue}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> 
+      <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+      <br/><br/><br/><br/>
+      <p id="p-text2">Network Issue Please try again.</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled4()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':unitSuccessDialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/>
+        <p id="p-text">Thanks and Successfully purchase Public Unit.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':OwnTreeSuccessDialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/>
+        <p id="p-text">Thanks and Successfully purchase Own Unit.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled2()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':privateSuccessDialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/>
+        <p id="p-text">Thanks and Successfully purchase Private Unit.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled3()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':failuredialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+      <br/><br/>
+      <h2 style="text-align: center;">Failure</h2>
+      <br/><br/>
+      <p id="p-text1">GSP ID is not Valid.</p>
+      <br/>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled4()" id="close-button1">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':miniSuccessDialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/>
+        <p id="p-text">Thanks and Successfully purchase Mini Unit.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled1()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<app-memberheader></app-memberheader>
+<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12"style="background-image: url('/assets/images/bg-withdraw.jpg');height:767px;">
+  <div id="withdraw"> 
+      <label id="text">Recent updates</label>
+      <div id="withdraw1" style="overflow-y:auto;overflow-x: auto;">
+        <div class="row" *ngIf="noamount" id="recentupdate">
+          <div class="col-md-5 col-xs-5 col-lg-4"></div>
+          <div class="col-md-3 col-xs-3 col-lg-6">
+            <br/><br/>
+            <p>No Data Found..</p>
+          </div>
+        </div>
+        <div class="row" id="recentupdate" *ngFor="let x of showMyAmountList">
+          <div class="col-md-4 col-xs-4 col-lg-3">{{ x.bookingdate }}</div>
+          <div class="col-md-6 col-xs-6 col-lg-7">{{ x.member_refer_Number1 }}</div>
+          <div class="col-md-2 col-xs-2 col-lg-2">{{ x.commition }}</div>
+        </div>
+      </div>
+    </div>
+    <br/><br/><br/><br/><br/>
+    <div style="margin-left: -130px;margin-top: -20px;" class="row">
+        <div class="col-md-12 col-xs-12 col-lg-6">
+            <label id="text1">Your Earning Details</label>
+            <div id="earnig-details">
+              <div class="row">
+                  <div class="col-md-12 col-xs-6 col-lg-6"><label class="text2">Commision </label> </div>
+                  <div class="col-md-12 col-xs-6 col-lg-2">
+                    <div id="earnig-details11">
+                      <label class="text2">{{ this.model.memberCommition }} SGD</label>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-12 col-xs-6 col-lg-6"><label class="text2">Overriding </label> </div>
+                  <div class="col-md-12 col-xs-6 col-lg-2">
+                    <div id="earnig-details11">
+                      <label class="text2">{{ this.model.memberOvrriding }} SGD</label>
+                    </div>
+                  </div>
+              </div>                  
+            </div>
+
+            <div id="earnig-details2"> 
+                <div class="row">
+                    <div class="col-md-12 col-xs-6 col-lg-6"><label class="text2">Total Amount </label> </div>
+                    <div class="col-md-12 col-xs-6 col-lg-2">
+                      <div id="earnig-details22">
+                        <label class="text2">{{ this.model.totalAmount }} SGD</label>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-xs-12 col-lg-6" id="hole-div">
+            <div id="withdraw-amount" class="text4"> Withdraw Amount</div>
+            <div id="withdraw-amount1" class="text3">{{ this.model.totalAmount }} SGD</div>
+              <div class="col-lg-2"></div>
+                <div class="col-md-12 col-xs-9 col-lg-5" id="hole-div">
+                    <button id="button" (click)="memberWithdraw()">Withdraw</button>
+                    <p id="text5">*Funds will be trasferred to your register bank account process on working hours max 24hr</p>
+                    <p id="text6">*Currency will be adjusted at the register bank</p>
+              </div>
+              <div class="col-md-12 col-xs-6" id="ggllogo-img"></div>
+              <div class="col-md-12 col-xs-3"></div>
+              <label class="col-md-12 col-xs-9" id="text7">Global Gain Limited</label>
+        </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':successdialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/><br/>
+        <p id="p-text">Withdraw is requested successfully.If Admin approve then take amount</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':failuredialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+      <br/><br/>
+      <h2 style="text-align: center;">Failure</h2>
+      <br/><br/>
+      <p id="p-text1">Failed to taken withdraw amount.</p>
+      <br/>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button1">Close</button>
+   </div>
+  </div>
+</div>
+ 
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':exsistdialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> 
+      <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+      <br/><br/><br/><br/><br/>
+      <p id="p-text2">Please give the valid amount.</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>

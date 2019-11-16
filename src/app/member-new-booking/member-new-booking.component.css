@@ -1,0 +1,124 @@
+	
+.modal-dialog {
+    -webkit-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    margin: 0 auto;
+    margin-left: 510px;
+}
+
+.modal-content {
+    overflow:hidden;
+    height: 465px;
+    width: 350px;
+    margin-top: 235px;
+    background: #f2f2f9;
+}
+
+.success {
+	color:#fff;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	background-color:rgb(48, 105, 171);
+	border-color: rgb(48, 105, 171);
+}
+
+#font{
+	font-size: 16px;
+	color: #000;
+}
+
+#labeltype{
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+}
+
+#categorylabel{
+	font-size: 16px;
+	color: #000;
+	padding-left: 0px;
+	font-weight: bold;
+}
+
+h2{
+	color:yellow;
+}
+#educolor{
+    color: #e0c608;
+	font-weight: bold;
+	font-size: 16px;
+}
+#software-color{
+	color:white;
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 0px;
+
+}
+#software{
+	color: aqua;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.loadingimage{
+	left:50%;
+	position:absolute;
+	margin-top:30%;
+}
+
+#p-text{
+    font-size: 16px;
+    text-align: center;
+}
+#box-dialouge{
+    margin-top: 45px; 
+    margin-left: 100px;
+    background-color: #0cc50c;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+}
+#icon-font{
+    font-size: 90px;
+    padding-left: 30px;
+    padding-top: 24px;
+    color: white;
+}
+#close-button{
+    margin-top: 46px;
+    width: 150px;
+    margin-left: 90px;
+    background-color: #06068c;
+}
+#box-dialouge1{
+    margin-top: 70px; 
+    margin-left: 90px;
+    background-color: #d8000c;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+}
+#icon-font1{
+    font-size: 90px;
+    padding-left: 40px;
+    padding-top: 25px;
+    color: white;
+}
+#box-dialouge2{
+    margin-top: 70px; 
+    margin-left: 90px;
+    background-color: #d8000c;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+}
+#icon-font2{
+    font-size: 90px;
+    padding-left: 60px;
+    padding-top: 30px;
+    color: white;
+}

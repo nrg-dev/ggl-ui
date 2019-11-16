@@ -1,0 +1,285 @@
+.modal-dialog {
+  -webkit-transform: translate(0,-50%);
+  -o-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  margin: 0 auto;
+  margin-left: 510px;
+}
+.modal-content {
+  overflow:hidden;
+  height: 465px;
+  width: 325px;
+  margin-top: 235px;
+}
+
+.success {
+  color:#fff;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color:rgb(48, 105, 171);
+  border-color: rgb(48, 105, 171);
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+
+#h1
+{
+    color:#0664af;
+    text-align: center;
+}
+
+#h4
+{
+    text-align: center;
+}
+#myprofilebutton{
+  color:#0664af;
+  font-size: large;
+  padding-left: 15px;
+}
+
+#editprofilebutton{
+  color:#0664af;
+  font-size: large;
+  padding-left: 15px;
+}
+
+#align-table{
+  background: #f7fbfa;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 600px;
+}
+
+#purchase-div{
+  background: #B7BDBE;
+  margin: 3px 15px 30px -70px;
+  height: 530px;
+  color: white;
+}
+
+#status-div{
+  background: #8B9091;
+  margin : 28px 20px 65px 130px;
+  height: 480px;
+  color: white;
+}
+
+.tab {
+  float: left;
+  margin-top: 28px;
+  margin-left: 12px;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  display: block;
+  background-color: #B7BDBE;
+  color: blue;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  margin-left: 10px;
+  width: 100%;
+  border: none;
+  outline: none;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #8B9091;
+  color: white;
+}
+
+.tab button.active {
+  background-color: #8B9091;
+  color: white;
+}
+
+.purchase{
+  background: #f7fbfa;
+  padding: 10px;
+}
+.purchase.active{
+  background-color: #2525af;
+  color: white;
+}
+
+/* Style the tab content */
+.tabcontent {
+  float: left;
+  padding: 0px 12px;
+  border: 1px solid #ccc;
+  width: 70%;
+  border-left: none;
+  height: 300px;
+}
+#status-div1{
+  background-color: #6A6E6E;
+  margin: 15px 10px 0px 10px;
+  height: 450px;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+}
+.status-div2{
+  width: 178px;
+  height: 145px;
+  background-color: #515454;
+  margin: 15px 10px 15px 10px;
+}
+
+#status-div3{
+  background-color: #6A6E6E;
+  margin: 70px 10px 0px 10px;
+  height: 380px;
+  color: white;
+  position: relative;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+ul li{
+  color:white;
+  padding-left: 15px;
+  font-size:12px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: skyblue; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #515454; 
+  border-radius: 10px;
+}
+
+#p-benefit{
+  padding-left: 50px;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.submitButton{
+  background-color: #4CAF50;
+  color: white;
+  width: 270px;
+  margin-right: -100px;
+}
+
+#box-dialouge{
+  margin-top: 45px; 
+  margin-left: 90px;
+  background-color: #0cc50c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#icon-font{
+  font-size: 90px;
+  padding-left: 37px;
+  padding-top: 30px;
+  color: white;
+}
+#p-text{
+  text-align: center;
+  font-size: 16px;
+}
+#close-button{
+  margin-top: 46px;
+  width: 150px;
+  margin-left: 90px;
+  background-color: #06068c;
+}
+
+
+.panel-heading {
+  color: #fff !important;
+  background-color: #3c8dbc !important;
+  padding: 12px 10px 0px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.panel-footer {
+  background-color: #efe7e7 !important;
+}
+
+#singleUnit{
+  background-color: #4CAF50;
+  color: white;
+  width: 270px;
+  margin-left: -100px;
+}
+
+#box-dialouge1{
+  margin-top: 70px; 
+  margin-left: 90px;
+  background-color: #d8000c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#box-dialouge2{
+  margin-top: 70px; 
+  margin-left: 90px;
+  background-color: #d8000c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#icon-font1{
+  font-size: 90px;
+  padding-left: 40px;
+  padding-top: 25px;
+  color: white;
+}
+#icon-font2{
+  font-size: 90px;
+  padding-left: 60px;
+  padding-top: 30px;
+  color: white;
+}
+#p-text1{
+  padding-left: 75px;
+  font-size: 16px;
+}
+#p-text2{
+  padding-left: 52px;
+  font-size: 18px;
+}
+#close-button1{
+  width: 150px;
+  margin-left: 90px;
+  background-color: #06068c;
+}

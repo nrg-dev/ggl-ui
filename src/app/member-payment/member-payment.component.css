@@ -1,0 +1,250 @@
+.modal-dialog {
+  -webkit-transform: translate(0,-50%);
+  -o-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  margin: 0 auto;
+  margin-left: 510px;
+}
+.modal-content {
+  overflow:hidden;
+  height: 465px;
+  width: 350px;
+  margin-top: 235px;
+}
+
+.success {
+  color:#fff;
+  padding: 6px 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background-color:rgb(48, 105, 171);
+  border-color: rgb(48, 105, 171);
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+.container {
+    height: 650px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+
+#h1
+{
+    color:#0664af;
+    text-align: center;
+}
+
+#h4
+{
+    text-align: center;
+}
+#myprofilebutton{
+  color:#0664af;
+  font-size: large;
+  padding-left: 15px;
+}
+
+#editprofilebutton{
+  color:#0664af;
+  font-size: large;
+  padding-left: 15px;
+}
+
+#align-table{
+  background: #f7fbfa;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 600px;
+}
+
+#p-benefit{
+  padding-left: 50px;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.submitButton{
+  background-color: #4CAF50;
+  color: white;
+  width: 200px;
+}
+
+#box-dialouge{
+  margin-top: 45px; 
+  margin-left: 100px;
+  background-color: #0cc50c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#icon-font{
+  font-size: 90px;
+  padding-left: 30px;
+  padding-top: 24px;
+  color: white;
+}
+#p-text{
+  font-size: 16px;
+  text-align: center;
+}
+#close-button{
+  margin-top: 46px;
+  width: 150px;
+  margin-left: 90px;
+  background-color: #06068c;
+}
+
+
+.panel-heading {
+  color: #fff !important;
+  background-color: #3c8dbc !important;
+  padding: 12px 10px 0px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.panel-footer {
+  background-color: #efe7e7 !important;
+}
+
+#singleUnit{
+  background-color: #4CAF50;
+  color: white;
+  width: 270px;
+  margin-left: -100px;
+}
+
+#box-dialouge1{
+  margin-top: 70px; 
+  margin-left: 90px;
+  background-color: #d8000c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#box-dialouge2{
+  margin-top: 70px; 
+  margin-left: 90px;
+  background-color: #d8000c;
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+}
+#icon-font1{
+  font-size: 90px;
+  padding-left: 40px;
+  padding-top: 25px;
+  color: white;
+}
+#icon-font2{
+  font-size: 90px;
+  padding-left: 60px;
+  padding-top: 30px;
+  color: white;
+}
+
+#payment-div{
+  background: #DEE5E6;
+  margin: 0px 70px 0px -20px;
+  height: auto;
+  color: white;
+}
+
+.details{
+  font-size: 16px;
+  color: blue;
+}
+
+.container1 {
+  display: block;
+  position: relative;
+  padding-left: 65px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 25px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+  
+/* Hide the browser's default radio button */
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark {
+  position: absolute;
+  top: 2px;
+  left: 25px;
+  height: 25px;
+  width: 25px;
+  background-color: #ccc;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container1 input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container1 input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container1 .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: skyblue; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #655d5db3; 
+  border-radius: 10px;
+}

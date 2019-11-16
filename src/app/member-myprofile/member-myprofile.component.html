@@ -1,0 +1,242 @@
+<app-memberheader></app-memberheader>
+<div class="col-sm-12 col-lg-12"style="background-image: url('/assets/images/bg-myprofile.jpg');height:767px;">
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+  <div class="col-lg-5"></div>
+  <div class="col-lg-3"></div>
+  <p id="text1" class="col-lg-4">Global Gain Limited</p>
+  
+  <form name="form6" (ngSubmit)="f.form.valid && updateMyProfile()" #f="ngForm" novalidate>
+      <div class="container">
+          <div class="col-lg-3">
+              <div class="row">
+                <h1 id="h1">Mr. {{ this.user.username }}</h1>
+              </div>
+              <div class="row">
+                  <h4 id="h4">{{ this.user.triptype }}</h4>
+              </div>
+              <br/><br/>
+              <div class="row" style="background: #f7fbfa;padding: 8px;cursor: pointer;" (click)="onMenuClick('myprofileback')">
+                  <a id="myprofilebutton">
+                      <i class="fa fa-user"></i> <span style="padding-left: 15px;">My Profile</span>       
+                  </a>
+              </div>
+              <br/>
+              <div class="row" style="background: #0664af;padding: 8px;cursor: pointer;" (click)="onMenuClick('ProfileEdit')">
+                  <a id="editprofilebutton">
+                      <i class="fa fa-user"></i> <span style="padding-left: 15px;">Edit Profile</span>       
+                  </a>
+              </div>
+              <br/>
+          </div>
+          <div class="col-lg-9" id="align-table">
+              <div style="background: #f7fbfa;margin-top: 15px;">
+                <div style="margin-left: 90px;" *ngIf="menu6">
+                    <div class="row" style="padding-top: 25px;margin-left: 20px;">
+                        <h2> <a> My Profile </a></h2> 
+                    </div><br/>
+                    <div class="col-lg-6" style="background: #f7fbfa;">
+                      <table >
+                        <tr>
+                          <th id="color">User Name</th>
+                          <td id="color2">{{ this.user.username }}</td>
+                        </tr>
+                        <tr>
+                          <th id="color1">First Name</th>
+                          <td id="color3"> {{ this.user.firstName }}</td>
+                        </tr>
+                        <tr>
+                          <th id="color">Country</th>
+                          <td id="color2"> {{ this.user.country }}</td>
+                        </tr>
+                        <tr>
+                          <th id="color1">Email</th>
+                          <td id="color3"> {{ this.user.emailID }}</td>
+                        </tr>
+                        <tr>
+                          <th id="color">Bank Name</th>
+                          <td id="color2"> {{ this.user.bankName }}</td>
+                        </tr>
+                        <tr>
+                          <th id="color1">Overriding</th>
+                          <td id="color3"> {{ this.user.memberOvrriding }} SGD</td>
+                        </tr>
+                      </table>
+                    </div>
+
+                    <div class="col-lg-6" style="background: #f7fbfa;">
+                        <table>
+                          <tr>
+                            <th id="color1">Member ID</th>
+                            <td id="color3">{{ this.user.memberID }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color">Last Name</th>
+                            <td id="color2">{{ this.user.lastName }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color1">Phone Number</th>
+                            <td id="color3"> {{ this.user.phoneNumber }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color">Member Type</th>
+                            <td id="color2"> {{ this.user.triptype }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color1">A/C Number</th>
+                            <td id="color3"> {{ this.user.bankAcctNumber }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color">Commission</th>
+                            <td id="color2"> {{ this.user.memberCommition }} SGD</td>
+                          </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- Profile Edit div Calling -->
+                <div style="margin-left: 90px;" *ngIf="profilediv">
+                    <div class="row" style="padding-top: 25px;margin-left: 20px;">
+                        <div class="col-lg-6">
+                          <h2> <a> Edit Profile </a></h2> 
+                        </div>
+                        <div class="col-lg-6">
+                            <button style="margin-left: 250px;border-radius: 5px;background-color: white">
+                              <i class="fa fa-check" aria-hidden="true" style="color: #05059a;">
+                              </i>
+                            </button>
+                        </div>
+                    </div><br/>
+                    <div class="col-lg-6" style="background: #f7fbfa;">
+                      <table >
+                          <tr>
+                            <th id="color">User Name</th>
+                            <td id="color2">{{ this.user.username }}</td>
+                          </tr>
+                          <tr>
+                            <th id="color1">First Name</th>
+                            <td id="color3"> 
+                                <input type="text" class="form-control" style="height: 30px;" name="firstName" value="{{ this.user.firstName  }}" [(ngModel)]="this.user.firstName" #firstName="ngModel" required />
+                            </td>
+                          </tr>
+          
+                          <tr>
+                            <th id="color">Country</th>
+                            <td id="color2">
+                                <select class="form-control" name ="selectedCountry" style="height: 30px;" [(ngModel)]="this.user.country" #selectedCountry="ngModel" required>
+                                    <option *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} 
+                                    </option> 
+                                 </select>
+                            </td>
+                            </tr>
+          
+                          <tr>
+                            <th id="color1">Email</th>
+                            <td id="color3"> 
+                                <input type="text" class="form-control" style="height: auto;" name="emailID" [(ngModel)]="this.user.emailID" #emailID="ngModel" required />
+                            </td>
+                          </tr>
+          
+                          <tr>
+                            <th id="color">Bank Name</th>
+                            <td id="color2"> 
+                                <input type="text" class="form-control" style="height: 30px;" name="bankName" [(ngModel)]="this.user.bankName" #bankName="ngModel" required />
+                            </td>
+                          </tr>
+          
+                          <tr>
+                            <th id="color1">Overriding</th>
+                            <td id="color3"> {{ this.user.memberOvrriding }} SGD</td>
+                          </tr>
+                        </table>
+                      </div>
+                
+                      <div class="col-lg-6" style="background: #f7fbfa;">
+                        <table >
+                            <tr>
+                              <th id="color1">Member ID</th>
+                              <td id="color3">{{ this.user.memberID }}</td>
+                            </tr>
+                          
+        
+                            <tr>
+                                <th id="color">Last Name</th>
+                                <td id="color2">
+                                    <input type="text" class="form-control" style="height: 30px;" name="lastName" [(ngModel)]="this.user.lastName" #lastName="ngModel" required />
+                                </td>
+                              </tr>
+        
+                              <tr>
+                                <th id="color1">Phone Number</th>
+                                <td id="color3"> 
+                                    <input type="text" class="form-control" style="height: 30px;" name="phoneNumber" [(ngModel)]="this.user.phoneNumber" #phoneNumber="ngModel" required />
+                                </td>
+                              </tr>
+        
+                            <tr>
+                                <th id="color">Member Type</th>
+                                <td id="color2"> {{ this.user.triptype }}</td>
+                              </tr>
+        
+                              <tr>
+                                <th id="color1">A/C Number</th>
+                                <td id="color3">
+                                    <input type="text" class="form-control" style="height: 30px;" name="bankAcctNumber" [(ngModel)]="this.user.bankAcctNumber" #bankAcctNumber="ngModel" required />
+                                </td>
+                              </tr>
+        
+                              <tr>
+                                <th id="color">Commission</th>
+                                <td id="color2"> {{ this.user.memberCommition }} SGD</td>
+                              </tr>
+                        </table>
+                      </div>
+                </div>
+                <!-- Profle Edit Ending -->
+
+               </div>
+               <br/>
+           </div>
+     </div>
+  </form>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':networkissue}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> 
+      <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+      <br/><br/><br/><br/><br/>
+      <p id="p-text2">Network Issue Please try again.</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':successdialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/><br/>
+        <p id="p-text">Information was Updated Successfully.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':failuredialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+      <br/><br/>
+      <h2 style="text-align: center;">Failure</h2>
+      <br/><br/>
+      <p id="p-text1">Information was not Updated.</p>
+      <br/>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button1">Close</button>
+   </div>
+  </div>
+</div>
+ 
+ 
+         

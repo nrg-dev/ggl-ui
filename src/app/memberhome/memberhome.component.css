@@ -1,0 +1,413 @@
+.my-profile{
+    background-color: #2525af;
+    width: 243px;
+    height: 240px;
+}
+
+@media (min-width: 320px) and (max-width: 359px) {
+    .text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 10px;
+    }
+    #my-profile3{
+        margin-left: 10px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 43px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 359px) and (max-width: 374px) {
+    .text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 30px;
+    }
+    #my-profile3{
+        margin-left: 30px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 63px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 375px) and (max-width: 409px) {
+    .text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 40px;
+    }
+    #my-profile3{
+        margin-left: 40px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 60px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 410px) and (max-width: 470px) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 50px;
+    }
+    #my-profile3{
+        margin-left: 50px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 96px;
+        margin-top: -25px;
+    }
+}
+
+@media (min-width: 471px) and (max-width: 530px) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 80px;
+    }
+    #my-profile3{
+        margin-left: 80px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 126px;
+        margin-top: -25px;
+    }
+}
+/* Tablets Responsive */
+@media (min-width: 531px) and (max-width: 539px) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 110px;
+    }
+    #my-profile3{
+        margin-left: 110px;
+        margin-top: 110px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 150px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 540px) and (max-width: 600px) {
+    .text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 140px;
+    }
+    #my-profile3{
+        margin-top: 60px;
+        margin-left: 140px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 175px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 601px) and (max-width: 767px) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 140px;
+    }
+    #my-profile3{
+        margin-top: 60px;
+        margin-left: 140px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 175px;
+        margin-top: -25px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 810px) and (orientation: landscape) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+        margin-left: 60px;
+    }
+    #my-profile3{
+        margin-top: 60px;
+        margin-left: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 74px;
+        margin-top: -25px;
+    }
+}
+@media (min-width: 810px) and (max-width: 1024px) and (orientation: landscape) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        margin-left: 117px;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        margin-left: 117px;
+        font-weight: bold;
+        color: black;
+    }
+    #my-profile2{
+        margin-top: 60px;
+    }
+    #my-profile3{
+        margin-top: 60px;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+	.text{
+        font-size: 24px;
+        text-align: center;
+        margin-left: 117px;
+        color: blue;
+    }
+    .text1{
+        font-size: 32px;
+        text-align: center;
+        margin-left: 117px;
+        font-weight: bold;
+        color: black;
+    }
+    
+    #my-profile2{
+        margin-left: 60px;
+        margin-top: 60px;
+    }
+
+    #my-profile3{
+        margin-left: 60px;
+        margin-top: 60px;
+    }
+}
+/* Desktop Responsive */
+@media (min-width: 1281px) and (max-width: 1380px) {
+	.text{
+        font-size: 24px;
+        text-align: center;
+        margin-left: 117px;
+        color: blue;
+    }
+    .text1{
+        font-size: 31px;
+        text-align: center;
+        margin-left: 117px;
+        font-weight: bold;
+        color: black;
+    }
+    
+    #my-profile2{
+        margin-left: 60px;
+        margin-top: 60px;
+    }
+
+    #my-profile3{
+        margin-left: 140px;
+        margin-top: 60px;
+    }
+    #memberhome-logo{
+        height: 150px;
+        width: 176px;
+        margin-left: 175px;
+        margin-top: -25px;
+    }
+}
+
+#icon{
+    font-size: 140px;
+    color: white;
+    margin-left: 65px;
+    margin-top: 27px;
+}
+#icon1{
+    font-size: 110px;
+    color: white;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+#icon2{
+    font-size: 110px;
+    color: white;
+    margin-left: 50px;
+    margin-top: 40px;
+}
+#home-icon{
+    font-size: 49px;
+    margin-top: -16px;
+}
+#label{
+    font-size: 27px;
+    color: white;
+    margin-left: 50px;
+}
+#label1{
+    font-size: 27px;
+    color: white;
+    margin-left: 65px;
+}
+
+
+/* Nav Bar Css Calling */
+.fixed-nav-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100%;
+}
+
+.navbar-collapse {
+    background-color:#2525af;
+    font-size: 18px;
+}
+
+.navbar-header {   
+    background-color:#2525af;
+}
+.container-fluid {
+    background-color:#2525af;
+    padding-top: 18px;
+    height: 88px;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #0078D7;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #f6f2f7;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #f3eded;
+}
+#logoImage {
+    max-width: 59px;
+    margin-top: -15px;
+}
+
+.fa_custom {
+    color: #0099CC;
+}
+@media (max-width: 767px) {
+    .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+        color: #f6f2f7;
+    }
+}

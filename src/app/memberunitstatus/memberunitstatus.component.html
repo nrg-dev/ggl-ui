@@ -1,0 +1,222 @@
+<app-memberheader></app-memberheader>
+<div class="col-sm-12 col-lg-12"style="background-image: url('/assets/images/GGL-Background.jpg');height:auto;">
+  <br/><br/><br/><br/><br/>
+  <div class="container">
+    <div class="col-lg-3" style="margin-top: -50px;">
+        <div class="row">
+          <img src="./assets/images/gglLogo.png" style="padding-left: 85px;" />
+        </div>
+        <br/><br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/member-purchaseunit']">
+          <a id="editprofilebutton">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span style="padding-left: 15px;">Purchase Unit</span> 
+          </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #2525af;padding: 10px;" [routerLink]="['/memberunitstatus']">
+            <a id="myprofilebutton"  style="color: white;">
+                <i class="fa fa-superpowers" aria-hidden="true"></i> <span style="padding-left: 15px;">My Status</span>        
+            </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/member-payment']">
+          <a id="myprofilebutton">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span style="padding-left: 15px;">Payment Option</span>        
+          </a>
+      </div>
+    </div>
+
+    <div class="col-lg-9" id="align-table">
+      <div style="background: #f7fbfa;margin-top: 15px;">
+        <label style="color: blue;font-size: 20px;margin-left: 20px;">My Unit Status Info </label>
+        <div style="margin-left: 90px;">
+            <div class="row" id="purchase-div">
+              <div class="tab">
+                <button class="tablinks" [class.active]="viewMode == 'tab1'" rel="tab1" (click)="statusOfPublicTree()">Public Tree </button>
+                <button class="tablinks" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="chooseTreeName()">Private Tree </button>
+                <button class="tablinks" [class.active]="viewMode == 'tab3'" rel="tab3" (click)="statusOfMiniTree()">Mini Tree </button>
+              </div>
+              <div class="row" id="status-div">
+                <div class="tab-slider--container" [ngSwitch]="viewMode">
+                  <!-- Tab 1 Starting -->
+                  <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+                    <div class="row" id="status-div1" style="overflow: auto">
+                      <div *ngFor="let memberUnit of memberUnitList"> 
+                        <ul class="status-div2">
+                          <br/>
+                          <li style="font-size: 16px;text-align: center;"> Queue No : {{ memberUnit.queueNumber }} </li>
+                          <br/>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">Unit Status</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4">{{ memberUnit.userstatus }} </div>					
+                              </div>
+                          </li>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">PaymentStatus</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4">{{ memberUnit.paymentStatus }} </div>					
+                              </div>
+                          </li>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">Unit ID</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4"> {{ memberUnit.invoiceNumber }} </div>					
+                              </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tab 1 Ending -->
+                  <!-- Tab 2 Starting -->
+                  <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                    <form name="form" (ngSubmit)="f.form.valid && statusOfPrivateTree()" #f="ngForm" style="width: 100%;" novalidate>
+                      <br/>
+                      <div class="col-lg-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-6">
+                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !treeName.valid }">
+                              <div class="col-lg-5">Tree Name * </div>
+                              <div class="col-lg-7">
+                                <select class="form-control"  name ="treeName" [(ngModel)]="model.treeName" #treeName="ngModel" required>
+                                  <option value="">-- Select Tree --</option>
+                                  <option *ngFor="let treename of treeList" value="{{ treename }}"> {{ treename }} </option> 
+                                </select>
+                                <div *ngIf="f.submitted && !treeName.valid" class="help-block" style="margin-left: -11px;">Tree Name is required</div>
+                              </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <button [disabled]="loading" style="background: #2e6da4;" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                      </div>  
+                    </form>
+                    <div *ngIf="div2">
+                      <div class="row" id="status-div3" style="overflow: auto">
+                        <div *ngFor="let memberUnit of memberUnitList"> 
+                            <ul class="status-div2">
+                              <br/>
+                              <li style="font-size: 16px;text-align: center;"> Queue No : {{ memberUnit.queueNumber }} </li>
+                              <br/>
+                              <li>
+                                  <div class="row" style="font-size: 10px;">
+                                    <div class="col-md-5 col-xs-5 col-lg-5">Unit Status</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-3 col-xs-3 col-lg-4">{{ memberUnit.userstatus }} </div>					
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="row" style="font-size: 10px;">
+                                    <div class="col-md-5 col-xs-5 col-lg-5">PaymentStatus</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-3 col-xs-3 col-lg-4">{{ memberUnit.paymentStatus }} </div>					
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="row" style="font-size: 10px;">
+                                    <div class="col-md-5 col-xs-5 col-lg-5">Unit ID</div>
+                                    <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                    <div class="col-md-3 col-xs-3 col-lg-4"> {{ memberUnit.invoiceNumber }} </div>					
+                                  </div>
+                              </li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tab 2 Ending -->
+                  <!-- Tab 3 Starting -->
+                  <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">
+                    <div class="row" id="status-div1" style="overflow: auto">
+                      <div *ngFor="let memberminiUnit of memberMiniUnitList"> 
+                        <ul class="status-div2">
+                          <br/>
+                          <li style="font-size: 16px;text-align: center;"> Queue No : {{ memberminiUnit.queueNumber }} </li>
+                          <br/>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">Unit Status</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4">{{ memberminiUnit.userstatus }} </div>					
+                              </div>
+                          </li>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">PaymentStatus</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4">{{ memberminiUnit.paymentStatus }} </div>					
+                              </div>
+                          </li>
+                          <li>
+                              <div class="row" style="font-size: 10px;">
+                                <div class="col-md-5 col-xs-5 col-lg-5">Unit ID</div>
+                                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                                <div class="col-md-3 col-xs-3 col-lg-4"> {{ memberminiUnit.invoiceNumber }} </div>					
+                              </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Tab 3 Ending -->
+                </div>
+
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':networkissue}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content"> 
+      <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+      <br/><br/><br/><br/>
+      <p id="p-text2">Network Issue Please try again.</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nopublicdataFound}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-ban" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <p id="p-text">No Public Tree Data for Information.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':noprivatedataFound}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-ban" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <p id="p-text">No Private Tree Data for Information.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nominidataFound}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-ban" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <p id="p-text">No Mini Tree Data for Information.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>

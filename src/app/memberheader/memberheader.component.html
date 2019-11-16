@@ -1,0 +1,57 @@
+
+<div class="fixed-nav-bar">
+  <nav class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    
+      <a class="navbar-brand" (click)="mainHeader()"> 
+          <div class="navbar-header">       
+            <i id="home-icon" class="fa fa-home" aria-hidden="true"></i>      
+          </div> 
+      </a>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <!-- My Profile start-->
+        <li class="profiletooltip">
+          <a [routerLink]="['/member-myprofile']">
+            <i class="fa fa-user" aria-hidden="true" id="icon"></i>
+          </a>
+        </li>
+        <!-- My Profile End-->
+
+        <!-- Withdraw start-->
+        <li class="main-header">
+            <a [routerLink]="['/member-withdraw']">
+                <span class="icononly">
+                    <img id="icon1" src="/assets/icon/withdraw.jpg" />
+                </span>
+              </a>
+              <!--  <span class="iconwithtext">
+                  <div style="height: 60px;width:150px;">
+                    <img src="/assets/icon/withdraw.jpg" style="width: 70px;"/>
+                    <br/>
+                    <label style="color: white;">My Profile</label>
+                </div>
+                </span> -->
+           
+        </li>
+        <!-- Withdraw End-->
+         
+        
+        <li><a [routerLink]="['/member-myglgmember']"><i class="fa fa-users" aria-hidden="true" id="icon"></i></a></li>
+        <li><a [routerLink]="['/member-purchaseunit']"><img id="icon2" src="/assets/icon/investment.jpg"  /></a></li>
+        <li><a [routerLink]="['/member-booking-dashboard']"><img id="icon2" src="/assets/icon/booking.jpg"  /></a></li>
+        <li></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a [routerLink]="['/login']"><span class="fa fa-sign-out"></span> Log out</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>

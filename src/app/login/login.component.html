@@ -1,0 +1,768 @@
+<div class="col-sm-12 col-md-12 col-xs-12 col-lg-12" id="loginimage">
+    <div class="col-sm-12 col-md-12 col-xs-12">
+        <div id="comp-details">
+            <div class="row">
+                <label class="details"><i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp; +62 21 2255 4567</label>
+                <label class="details">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp; cs@gglway.com</label>
+            </div>
+            <a [routerLink]="['/employerlogin']" class="details">Employment Log In</a> &nbsp;&nbsp; | &nbsp;&nbsp; <a class="details">Career</a>
+        </div>
+    </div>
+    <div *ngIf="loginmenu1">
+        <div class="row">
+           <br/>
+            <div class="col-sm-6 col-md-12 col-xs-12 col-md-12 col-xs-12 col-lg-6">
+                    <br/><br/><br/><br/>
+                    <div class="col-md-2 col-xs-2"></div>
+                    <div class="col-md-6 col-xs-6" id="logoimage"></div>
+                    <br/><br/><br/><br/>
+                    <div class="col-sm-6 col-md-1 col-xs-2 col-lg-2"></div>
+                    <div class="col-sm-6 col-md-10 col-xs-10 col-lg-6" id="logintext">
+                        <p class="text">Welcome,</p>
+                        <p class="text1"> We Are Global Gains Limited!</p>
+                    </div>
+            </div>     
+            <div class="col-sm-6 col-md-12 col-xs-12 col-lg-6">
+                <div class="col-sm-6 col-lg-md-12 col-xs-12 col-lg-1"></div>
+                <div class="col-sm-6 col-lg-md-12 col-xs-12 col-lg-5" id="login-box">
+                    <h3 class="header" style="margin-left: 40px;">Member Sign In</h3>
+                    <label class="label">Not a Member Yet?</label><label><a style="cursor: pointer;" (click)="Signupdialouge()"> Sign Up</a></label> <label class="label"> Now </label>
+                
+                    <form class="tableid" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !currentusername.valid }"> 
+                            <div class="input-group">
+                                <div class="input-group-addon" id="icon">
+                                    <i class="fa fa-user-circle-o" aria-hidden="true" style="color:white"></i>
+                                </div>
+                                <input type="text" placeholder="Username/Email" class="form-control"  name="currentusername" [(ngModel)]="model.currentusername" #currentusername="ngModel" required />
+                            </div>
+                            <div *ngIf="f.submitted && !currentusername.valid" class="help-block">Username is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !currentpassword.valid }">
+                            <div class="input-group">
+                                <div class="input-group-addon" id="icon">
+                                    <i class="fa fa-lock" aria-hidden="true" style="color:white"></i>
+                                </div>
+                                <input type="password" placeholder="Password" class="form-control" name="currentpassword" [(ngModel)]="model.currentpassword" #currentpassword="ngModel" required />
+                            </div>
+                            <div *ngIf="f.submitted && !currentpassword.valid" class="help-block">Password is required</div>
+                        </div>
+                        <br/>
+                        <div class="form-group">
+                            <div class="row" class="col-lg-6">
+                                <button [disabled]="loading" class="btn btn-primary" style="background-color:  #082d96;">Sign In</button>
+                                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            </div>
+                            <div class="row" class="col-lg-6">
+                                <input type="checkbox" value="Remember me" />
+                                <label for="Remember me" class="forgot">Remember me</label>
+                                <a (click)="forgetPassword()" class="forgot">Forget Password ?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="loginmenu2">
+        <div class="row">
+            <br/>
+            <div class="col-sm-6 col-lg-6">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="col-sm-6 col-lg-2"></div>
+                    <div class="col-sm-6 col-lg-6">
+                        <p class="text">Welcome,</p>
+                        <p class="text1"> We Are Global Gains Limited!</p>
+                    </div>
+            </div>  
+            <div class="col-sm-6 col-md-offset-8">
+                <form  name="formForget" style="margin-top: -150px;">
+                    <div class="form-group">
+                        <label for="username">Enter User name</label>
+                        <input type="text" class="form-control" id="forgot1" name="currentusername" [(ngModel)]="model.currentusername" />
+                    </div>
+
+                    <div class="form-group">
+                        <button [disabled]="loading" (click)="checkUserName()" class="btn btn-primary" style="margin-left: 118px;">Generate</button>
+                        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        <a (click)="forgetCancel()" class="btn btn-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- OPT Div start -->
+    <div *ngIf="loginmenu3">
+        <div class="row">
+            <br/>
+            <div class="col-sm-6 col-lg-6">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="col-sm-6 col-lg-2"></div>
+                    <div class="col-sm-6 col-lg-6">
+                        <p class="text">Welcome,</p>
+                        <p class="text1"> We Are Global Gains Limited!</p>
+                    </div>
+            </div>  
+            <div class="col-sm-6 col-md-offset-8">
+                <form  name="formForget" style="margin-top: -150px;">
+                    <div class="form-group">
+                        <label for="username">Enter OTP</label>
+                        <input type="text" class="form-control" id="forgot1" name="otp" [(ngModel)]="model.otp" />
+                    </div>
+
+                    <div class="form-group">
+                        <button (click)="OTPCheck()" class="btn btn-primary" style="margin-left: 82px;">Enter</button>
+                        <a (click)="forgetCancel()" class="btn btn-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- OTP Div closed -->
+
+    <!-- Change Password Div start -->
+    <div *ngIf="loginmenu4">
+        <div class="row">
+            <br/>
+            <div class="col-sm-6 col-lg-6">
+                    <br/><br/><br/><br/><br/><br/><br/><br/>
+                    <div class="col-sm-6 col-lg-2"></div>
+                    <div class="col-sm-6 col-lg-6">
+                        <p class="text">Welcome,</p>
+                        <p class="text1"> We Are Global Gains Limited!</p>
+                    </div>
+            </div>  
+            <div class="col-sm-6 col-md-offset-8">
+                <form  name="formForget" style="margin-top: -150px;">
+                    <div class="form-group">
+                        <label for="newPassword1" style="margin-left: 18px;">Enter New Password</label>
+                        <input type="password" class="form-control" id="forgot1" name="otp" [(ngModel)]="model.newPassword1" />
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword2" style="margin-left: 18px;">Confirm New Password</label>
+                        <input type="password" class="form-control" id="forgot1" style="margin-left: 5px;" name="otp" [(ngModel)]="model.newPassword2" />
+                    </div>
+                    <div class="form-group">
+                        <button (click)="submitPassword()" class="btn btn-primary" style="margin-left: 158px;">Enter</button>
+                        <a (click)="forgetCancel()" class="btn btn-link">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Change Password Div closed -->
+
+    <!-- New header-->
+    <div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':signupdialog}" >
+        <div  role="document" id="signup-box">
+            <div class="modal-content" id="box-content" style="overflow-y: auto;overflow-x: hidden;">
+                <div class="row" id="fixed-heder">
+                    <div class="col-lg-4">
+                        <div  id="new-header">
+                            <div class="tablink"  [class.active]="viewMode == 'tab1'" rel="tab1" (click)="viewMode ='tab1'">
+                                <div class="col-lg-2" id="circle-icon"> </div>
+                                <div class="col-lg-10">
+                                    <label id="Signup-text"> Signup</label>
+                                    <p id="filling-text">By Filling Up From Below</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="new-header">
+                            <!-- <div class="tablink" [class.active]="viewMode == 'tab2'" rel="tab2" (click)="viewMode ='tab2'"> -->
+                                <div class="tablink" [class.active]="viewMode == 'tab2'" rel="tab2">
+                                <div class="col-lg-2" id="circle-icon"> </div>
+                                <div class="col-lg-10">
+                                    <label id="Signup-text"> Membership</label>
+                                    <p id="filling-text1">Choose Our Package</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="new-header">
+                            <!-- <div class="tablink" style="width: 360px;" [class.active]="viewMode == 'tab3'" rel="tab3" (click)="viewMode ='tab3'"> -->
+                                <div class="tablink" style="width: 360px;" [class.active]="viewMode == 'tab3'" rel="tab3">
+                                <div class="col-lg-2" id="circle-icon"> </div>
+                                <div class="col-lg-10">
+                                    <label id="Signup-text"> Payment</label>
+                                    <p id="filling-text2">Choose Payment Method</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br/><br/>
+                <!-- Register form Start-->
+                <div class="tab-slider--container" [ngSwitch]="viewMode">
+                    <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+                        <div class="row">
+                            <form name="form" (ngSubmit)="f.form.valid && nextButton()" #f="ngForm" novalidate >   
+                                <div class="col-lg-8">
+                                    <br/><br/><br/>
+                                    <table  width="650" style="margin-left: 30px;" >
+                                        <!-- 1 row start -->
+                                        <tr> 
+                                            <td>
+                                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                                    <label for="firstName">First Name</label>
+                                                    <input type="text" class="form-control" placeholder="Eg-Alex" id="input-box" name="firstName"  [(ngModel)]="model.firstName" #firstName="ngModel" required />
+                                                    <div *ngIf="f.submitted && !firstName.valid" class="help-block" style="color: red;">First Name is required</div>
+                                                </div>
+                                            </td>
+                                            <td width="40px;"></td>
+                                            <td> 
+                                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                                    <label for="lastName">Last Name</label>
+                                                    <input type="text" class="form-control" placeholder="Eg-Jeff" id="input-box" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+                                                    <div *ngIf="f.submitted && !lastName.valid" class="help-block" style="color: red;">Last Name is required</div>
+                                                </div>
+                                            </td>      
+                            
+                                        </tr>
+                                        <!-- 1 row End-->
+                                        <!-- 2 row start -->
+                                        <tr> 
+                                            <td>
+                                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !selectedCountry.valid }">
+                                                    <label for="state">Country*</label>            
+                                                    <select class="form-control" name ="selectedCountry" id="input-box" [(ngModel)]="model.selectedCountry" #selectedCountry="ngModel" required>
+                                                        <option id="input-box" *ngFor="let itemCountry of countryList" value="{{ itemCountry }}"> {{ itemCountry }} </option> 
+                                                    </select>
+                                                    <div *ngIf="f.submitted && !selectedCountry.valid" class="help-block" style="color: red;">Country is required</div>
+                                                </div> 
+                                            </td>
+                                            <td width="40px;"></td>
+                                            <td> 
+                                                <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                                    <label for="phoneNumber">Mobile Phone</label>
+                                                    <input type="text" class="form-control" placeholder="Eg-8870477654" id="input-box" name="phoneNumber" [(ngModel)]="model.phoneNumber" #phoneNumber="ngModel" required />
+                                                    <div *ngIf="f.submitted && !phoneNumber.valid" class="help-block" style="color: red;">Number is required</div>
+                                                </div>
+                                            </td>                    
+                                        </tr>
+                                    <!-- 2row end -->
+                                    <!-- 3 row start-->
+                    
+                                    <tr>
+                                        <td>   
+                                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                                <label for="username">Username</label>
+                                                <input type="text" class="form-control" placeholder="Eg-jeff@outlook.com" id="input-box" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                                                <div *ngIf="f.submitted && !username.valid" class="help-block" style="color: red;">Username is required</div>
+                                            </div>
+                                        </td>
+                                        <td width="40px;"></td>
+                                        <td> 
+                                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                                <label for="emailID">Email ID</label>
+                                                <input type="text" class="form-control" name="emailID" id="input-box" [(ngModel)]="model.emailID" #emailID="ngModel" required />
+                                                <div *ngIf="f.submitted && !emailID.valid" class="help-block" style="color: red;">Email ID is required</div>
+                                            </div>
+                                        
+                                        </td>
+                                    <tr>
+                                    <!-- 3 row end-->
+                                    <!-- 4 row start-->
+                                    <tr>
+                                        <td> 
+                                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                                <label for="password">Password</label>
+                                                <input type="password" class="form-control" name="password" id="input-box" [(ngModel)]="model.password" #password="ngModel" required />
+                                                <div *ngIf="f.submitted && !password.valid" class="help-block" style="color: red;">Password is required</div>
+                                            </div>
+                                        </td>
+                                        <td width="40px;"></td> 
+                                        <td> 
+                                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !repwd.valid }">
+                                                <label for="repwd">Re-Enter Password*</label>
+                                                <input type="password" class="form-control" name="repwd" id="input-box" [(ngModel)]="model.repwd" #repwd="ngModel" (change)="passwordCheck()" required />
+                                                <div *ngIf="f.submitted && !repwd.valid" class="help-block" style="color: red;">Re-Enter Password is required</div>
+                                            </div>
+                                        </td>
+                                    <tr>
+                                    <!-- 4 row start-->    
+                                    <!-- 5 row Start -->
+                                    <tr>
+                                        <td>   
+                                            <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankName.valid }">
+                                                <label for="bankName">Bank Name</label>
+                                                <input type="text" class="form-control" placeholder="Eg-HSBC" id="input-box" name="bankName" [(ngModel)]="model.bankName" #bankName="ngModel" required />
+                                                <div *ngIf="f.submitted && !bankName.valid" class="help-block" style="color: red;">Bank Name is required</div>
+                                            </div>
+                                        </td>
+                                    <td width="40px;"></td> 
+                                    <td> 
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !bankAcctNumber.valid }">
+                                            <label for="bankAcctNumber">Account No*</label>
+                                            <input type="text" class="form-control" placeholder="Eg-100123454323" id="input-box" name="bankAcctNumber" [(ngModel)]="model.bankAcctNumber" #bankAcctNumber="ngModel" required />
+                                            <div *ngIf="f.submitted && !bankAcctNumber.valid" class="help-block" style="color: red;">A/C is required</div>
+                                        </div>
+                                    </td>
+                                <tr>
+                                <!-- 5 row End-->
+                                <!-- 6 row start-->
+                                <tr>
+                                    <td> 
+                                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !refmemberID.valid }">
+                                            <label for="refmemberID">Referal Code</label>
+                                            <input type="text" class="form-control" placeholder="Eg-GLGP600800" id="input-box" name="refmemberID" (change)="getMemberIDValidate()" [(ngModel)]="model.refmemberID" #refmemberID="ngModel" required />
+                                            <div *ngIf="f.submitted && !refmemberID.valid" class="help-block" style="color: red;">Member ID is required</div>
+                                        </div>
+                                    </td>
+                                    <td width="40px;"></td> 
+                                    <br/>
+                                </tr>
+                            </table>
+                        </div>    
+                        <!-- Register form End -->
+                        <!-- Next button  (click)="nextButton()" -->
+                        <div class="col-lg-4">
+                                <br/><br/><br/>
+                                <div>
+                                    <a (click)="closeDialog()" id="font-close">Close Dialog</a> 
+                                </div>
+                            <br/><br/>
+                            <div id="next-button1" style="margin-top: 85px;margin-left: 150px;">
+                                <div class="col-lg-6">
+                                    <button class="next" style="padding-top: 8px;color: #06068c;font-weight: bold;">Next</button>
+                                </div>
+                                <div class="col-lg-6">
+                                <button class="next"> 
+                                     <i class="fa fa-angle-right" aria-hidden="true" id="next-icon"></i>
+                                </button>
+                              </div>
+                            </div>
+                            <img src="./assets/images/gglLogo1.png" style="margin-top: 100px;margin-left: 150px; height: 110px;"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- tab 2 start-->
+            <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                <div class="col-lg-10">
+                    <br/><br/><br/><br/>
+                    <div class="col-lg-3">
+                        <div id="back-button" (click)="backtosignup()">
+                            <div class="col-lg-6">
+                                <i class="fa fa-angle-left" aria-hidden="true" id="next-icon"></i> 
+                            </div>
+                            <div class="col-lg-6">
+                                <p id="back-text">Back</p> 
+                             </div>
+                        </div>
+
+                        <div id="membership-box1">
+                            <br/>
+                            <p id="Travel-privileges" style="padding-left: 40px;"> Travel Privileges </p>
+                            <br/>
+                            <p id="Travel-privileges" style="padding-left: 30px;"> Referal Commission </p>
+                            <br/> 
+                            <p id="Travel-privileges" style="padding-left: 20px;"> City Sales Commission </p>
+                            <br/>
+                            <p id="Travel-privileges" style="padding-left: 10px;"> Province Sales Commission </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div id="membership-box2">
+                            <br/>
+                            <label id="master-text"> MASTER </label>
+                            <label id="master-text" style="margin-left: -17px;"> FRANCHISE  </label>
+                            <p id="sgd-text">SGD 10000 </p>
+                            <div id="buy-now-btn">
+                                <label class="container">Buy Now
+                                    <input type="radio" name="actType" [(ngModel)]="model.actType"  value="platinum">
+                                    <span class="checkmark" style="left: 5px;"></span>
+                                </label>
+                                <!--Tic icon start-->
+                                <br/><br/>
+                                <div id="tic-icon"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/>
+                                <div id="tic-icon" style="margin-top: 10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon" style="margin-top: -10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon" style="margin-top: -10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <!--Tic icon end-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div id="membership-box3">
+                                <br/><br/>
+                                <label id="franchise-text"> FRANCHISE </label>
+                                <br/><br/>
+                                <p id="sgd-text1">SGD 1000</p>
+                                <div id="buy-now-btn1">
+                                    <label class="container">Buy Now
+                                        <input type="radio" name="actType" [(ngModel)]="model.actType" value="gold">
+                                        <span class="checkmark" style="left: 5px;"></span>
+                                    </label>
+                                        <!--Tic icon start-->
+                                <br/><br/>
+                                <div id="tic-icon"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/>
+                                <div id="tic-icon" style="margin-top: 10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon" style="margin-top: -10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon1" style="margin-top: -10px;"><i class="fa fa-times" aria-hidden="true" style="padding-left: 7px; padding-top: 4px;"></i></div>
+                                <!--Tic icon end-->
+                                </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div id="membership-box4">
+                            <br/><br/>
+                            <label id="member-text"> MEMBER </label>
+                            <br/><br/>
+                            <p id="sgd-text2">SGD 15</p>
+                            <div id="buy-now-btn2">
+                                <label class="container">Buy Now
+                                    <input type="radio" name="actType" [(ngModel)]="model.actType" value="silver">
+                                    <span class="checkmark" style="left: 5px;"></span>
+                                </label>
+                                <!--Tic icon start-->
+                                <br/><br/>
+                                <div id="tic-icon"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/>
+                                <div id="tic-icon" style="margin-top: 10px;"><i class="fa fa-check" aria-hidden="true" style="padding-left: 4px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon1" style="margin-top: -10px;"><i class="fa fa-times" aria-hidden="true" style="padding-left: 6px; padding-top: 4px;"></i></div>
+                                <br/><br/>
+                                <div id="tic-icon1" style="margin-top: -10px;"><i class="fa fa-times" aria-hidden="true" style="padding-left: 6px; padding-top: 4px;"></i></div>
+                                <!--Tic icon end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <br/><br/><br/><br/>
+                        <!-- <div>
+                            <a (click)="closeDialog()"  id="font-close1">Close Dialog</a> 
+                        </div> -->
+                    <br/><br/>
+                    <div id="next-button1" (click)="nextnxtButton()" style="margin-top: 75px;">
+                        <div class="col-lg-6">
+                            <br/>
+                            <p id="text2">Next</p>
+                        </div>
+                        <div class="col-lg-6">
+                            <i class="fa fa-angle-right" aria-hidden="true" id="next-icon"></i>
+                        </div>
+                    </div> 
+                    <img src="./assets/images/gglLogo1.png" style="margin-top: 90px;height: 110px;"/>
+                </div>
+            </div>
+            <!-- tab 2 end-->
+            <!--tab 3 start-->
+            <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">
+                <div class="col-lg-1">
+                    <br/>
+                    <div *ngIf="paymentBack">
+                        <div id="back-button" (click)="backtosignup1()" style="margin-top: 200px;">
+                            <div class="col-lg-6">
+                                <i class="fa fa-angle-left" aria-hidden="true" id="next-icon"></i> 
+                            </div>
+                            <div class="col-lg-6">
+                                <p id="back-text">Back</p> 
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="creditback">
+                            <div id="back-button" (click)="creditBack()" style="margin-top: 200px;">
+                                <div class="col-lg-6">
+                                    <i class="fa fa-angle-left" aria-hidden="true" id="next-icon"></i> 
+                                </div>
+                                <div class="col-lg-6">
+                                    <p id="back-text">Back</p> 
+                                </div>
+                        </div>
+                   </div> 
+                </div>
+
+                <div class="col-lg-9">
+                <div style="overflow-x: none;">
+                    <div style="margin-left: 67px;">
+                        <div *ngIf="paymentdiv">
+                        <h2 style="color:#0F4FA1;">Choose Your Payment Method</h2>
+                        <form name="paymentform" (ngSubmit)="f.form.valid && payment()" #f="ngForm" novalidate>
+                            <div class="row" id="payment-div">
+                            <br/>
+                            <label class="container1">Pay Use Debit
+                                <input type="radio" name="actType" value="debit">
+                                <span class="checkmark" (click)="paydebitcard()"></span>
+                            </label>
+                            <div *ngIf="debitdiv">
+                                <h5 style="padding-left: 65px;">Different Region Different Payment Transfer Account</h5>
+                                <br/>
+                                <h5 style="padding-left: 65px;">Bank Name</h5>
+                                <div style="padding-left: 65px;color: black;">
+                                    <select id="select-box" name="adminbankName" [(ngModel)]="this.model.adminbankName" #adminbankName="ngModel" (change)="afterselect(this.model.adminbankName)" required>
+                                        <option>--- Select Bank ---</option>
+                                        <option *ngFor="let itemBank of bankList" value="{{ itemBank }}"> {{ itemBank }} </option> 
+                                    </select>
+                                    <p style="color: red;">Select a Bank to continue *</p>
+                                </div>
+                            </div>
+                            <div *ngIf="dbsbankdetails" style="padding-left: 65px;color: black;">
+                                <p>Please make wire transfer manually to our account bellow </p>
+                                <p id="acc-text">Account Number :  003-932398-0 </p>
+                                <p id="acc-text">Account Name : Global Gains Limited</p>
+                                <p id="bank-text">Your Bank Transfer From</p>
+                                <select id="select-box" name ="banktransfer" [(ngModel)]="this.model.banktransfer" #banktransfer="ngModel" (change)="afterselect1()">
+                                    <option>--- select Transfer ---</option>
+                                    <option value="Bank Central Asia"> Bank Central Asia </option> 
+                                </select>
+                                <p style="color: red">Select a Bank to continue *</p>
+                            </div>
+                            <div *ngIf="nextdetails" style="padding-left: 65px;color: black;">
+                                <p>Please make wire transfer manually to our account bellow </p>
+                                <p id="acc-text">Account Number :  800077326600 </p>
+                                <p id="acc-text">Account Name : Blue Print Nusantara Indonesia</p>
+                                <p id="bank-text">Your Bank Transfer From</p>
+                                <select id="select-box" name ="banktransfer" [(ngModel)]="this.model.banktransfer" #banktransfer="ngModel" (change)="afterselect2()">
+                                    <option>--- select Transfer ---</option>
+                                    <option *ngFor="let itemBankTrans of bankTransferList" value="{{ itemBankTrans }}"> {{ itemBankTrans }} </option> 
+                                </select>
+                                <p style="color: red">Select a Bank to continue *</p>
+                            </div>
+                            <div *ngIf="bankdetails2" style="padding-left: 65px;color: black;">
+                                <div class="row">
+                                <div class="col-lg-4">
+                                    <p id="bank-text">Bank Account Name </p>
+                                    <input type="text" name ="transferAcctName" [(ngModel)]="this.model.transferAcctName" #transferAcctName="ngModel" id="box-input" />
+                                </div>
+                                <div class="col-lg-4">
+                                    <p id="bank-text">Bank Account Number</p>
+                                <input type="number" name ="transferBankAcctNumber" [(ngModel)]="this.model.transferBankAcctNumber" #transferBankAcctNumber="ngModel" id="box-input" />
+                                </div>
+                                </div>  
+                                <br/><br/><br/>
+                                <div>
+                                <p id="bank-text"> Upload Your Transfer Recipient </p>
+                                <p>File Jpg/Png*</p>
+                                </div>
+                                <div *ngIf="currentFileUpload" class="progress" style="display: none;">
+                                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                                        role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                                        aria-valuemin="0" aria-valuemax="100"
+                                        [ngStyle]="{width:progress.percentage+'%'}"> {{progress.percentage}}% 
+                                    </div>  
+                                </div>
+                                
+                                <label  for="c"> </label>
+                                <input type="file" class="form-control" (change)="uploadPayment($event)" style="width: 310px;">
+                                <br/>
+                                
+                            </div>
+                            <br/>
+                            </div>
+                            <br/>
+                            <!-- <div style="text-align:center" *ngIf="buttondiv">  
+                                <button class="submitButton">Confirm</button>
+                            </div> -->
+                        </form>
+                        <br/>
+                        <div class="row" id="payment-div">
+                            <br/>
+                            <label class="container1">Pay Use Credit
+                                <input type="radio" name="actType" value="credit">
+                                <span class="checkmark" (click)="paycreditcard()"></span>
+                            </label>
+                        </div>
+                        </div>
+                        
+                        <div *ngIf="creditdiv">
+                        <br/><br/> <br/><br/>
+                        <div class="col-lg-2">
+                            <br/><br/><br/>
+                            <div  style="background-image: url('./assets/images/maintenance-512.jpg');margin-top: 60px;height: 100px;width: 100px;"></div>
+                        </div>
+                        <br/><br/><br/><br/>
+                        <div class="col-lg-10" style="margin-top: 60px;">
+                            <h2 style="color: black;">Sorry, we are under maintance! </h2>
+                            <h2 style="color: black;">We will back soon, contact us for support</h2>
+                        </div>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+
+                <div class="col-lg-2">
+                    <br/><br/><br/><br/>
+                    <div>
+                        <a (click)="closeDialog()" id="font-close1">Close Dialog</a> 
+                    </div>
+                    <br/><br/>
+                    <div *ngIf="finishdiv">
+                        <div id="next-button1" (click)="register()" style="margin-top: 75px;">
+                            <div class="col-lg-12">
+                                <br/>
+                                <p id="text2">Finish 
+                                        <img *ngIf="loading1" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                                </p>
+                            </div>
+                            <img src="./assets/images/gglLogo1.png" style="margin-top: 90px;height: 110px;"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--tab 3 end-->
+            </div>
+          </div>
+        </div>
+    </div>
+      
+</div>	
+
+<!-- Dialog Box Calling -->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':errorpasswordCheck}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Password doesn't Matched.please try again</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':successDialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+            <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+            <br/><br/>
+            <h2 style="text-align: center;">Success</h2>
+            <br/>
+            <p id="p-text">Member ID is available. </p>
+            <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':failuredialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Member ID is not Valid.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':networkissue}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1"> 
+        <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+        <br/><br/><br/><br/>
+        <p id="p-text">Network Issue Please try again.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':serverissuedialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1"> 
+        <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+        <br/><br/><br/><br/>
+        <p id="p-text">Due to some Technical issue. Please try later.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':errordialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">{{ errorStatus }}</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':invalidotpdialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Please enter valid OTP.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':invaliduserdialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">User name is not valid.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':userExsistdialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Username is already registered Please try again.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':registersuccessdialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1" style="background: white;">
+            <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+            <br/><br/>
+            <h2 style="text-align: center;">Success</h2>
+            <br/>
+            <p id="p-text">Registration successfully completed. Please check your email. </p>
+            <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':memberIDNotValiddialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Given Member is not Valid Please check.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':accTypeissue}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text"> Please Buy one Member Ship.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>
+

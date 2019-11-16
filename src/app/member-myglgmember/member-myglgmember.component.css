@@ -1,0 +1,629 @@
+.modal-dialog {
+    -webkit-transform: translate(0,-50%);
+    -o-transform: translate(0,-50%);
+    transform: translate(0,-50%);
+    margin: 0 auto;
+    margin-left: 510px;
+}
+.modal-content {
+    overflow:hidden;
+    height: 465px;
+    width: 325px;
+    margin-top: 235px;
+}
+
+.success {
+	color:#fff;
+    padding: 6px 12px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	background-color:rgb(48, 105, 171);
+	border-color: rgb(48, 105, 171);
+}
+#text{
+    color:white;
+    font-size: 25px;
+    padding-left: 72px; 
+    padding-top: 4px;
+    font-weight: 100;
+}
+#member-details1{
+    background-color: #858a85b3;
+    height: 415px;
+    width: 100%;
+    margin-top: -8px;
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+}
+#text1{
+    font-size: 14px;
+    margin-top: -88px;
+    padding-left: 225px;
+    color: blue;
+}
+ 
+ul li{
+    color:white;
+    padding-left: 15px;
+    font-size:12px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: skyblue; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #655d5db3; 
+    border-radius: 10px;
+}
+
+#update{
+    margin: 3px 10px 1px 20px;
+    font-size: 15px;
+}
+
+#box-dialouge{
+    margin-top: 70px; 
+    margin-left: 90px;
+    background-color: #0cc50c;
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+}
+
+#icon-font{
+    font-size: 65px;
+    padding-left: 47px;
+    padding-top: 42px;
+    color: white;
+}
+
+#p-text{
+    padding-left: 65px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#close-button{
+    margin-top: 46px;
+    width: 150px;
+    margin-left: 90px;
+    background-color: #06068c;
+}
+@media (min-width: 320px) and (max-width: 359px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 80px;
+        color: blue;
+    }
+    #withdraw{
+        width: 340px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 267px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 105%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+        margin-left: -5px;
+    }
+    .member-details2{
+        width: 310px;
+        height: 208px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+        margin-left: 7px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 50px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+@media (min-width: 359px) and (max-width: 374px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 105px;
+        color: blue;
+    }
+    #withdraw{
+        width: 340px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 310px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+    }
+    .member-details2{
+        width: 270px;
+        height: 222px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 75px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+@media (min-width: 375px) and (max-width: 409px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 105px;
+        color: blue;
+    }
+    #withdraw{
+        width: 340px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 318px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+    }
+    .member-details2{
+        width: 286px;
+        height: 210px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 75px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+@media (min-width: 410px) and (max-width: 470px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 45px;
+        color: blue;
+    }
+    #withdraw{
+        width: 372px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 350px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+    }
+    .member-details2{
+        width: 300px;
+        height: 225px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 75px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+@media (min-width: 471px) and (max-width: 530px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 67px;
+        color: blue;
+    }
+    #withdraw{
+        width: 440px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 415px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+    }
+    .member-details2{
+        width: 360px;
+        height: 200px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 110px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+/* Tablets Responsive */
+@media (min-width: 531px) and (max-width: 539px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 105px;
+        color: blue;
+    }
+    #withdraw{
+        width: 495px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 470px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 85%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+        margin-left: 35px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 155px;
+        height: 150px;
+        margin-top: 70px;
+      }
+      .member-details2{
+        width: 370px;
+        height: 210px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+}
+@media (min-width: 540px) and (max-width: 600px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 105px;
+        color: blue;
+    }
+    #withdraw{
+        width: 550px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 520px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 85%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+        margin-left: 35px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 165px;
+        height: 150px;
+        margin-top: 70px;
+      }
+      .member-details2{
+        width: 370px;
+        height: 210px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+        margin-left: 37px;
+    }
+}
+@media (min-width: 601px) and (max-width: 767px) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 105px;
+        color: blue;
+    }
+    #withdraw{
+        width: 550px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 0px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 520px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 15px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 85%;
+        padding-left: 2%;
+        padding-right: 2%;
+        margin-top: 35px;
+        margin-left: 30px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 165px;
+        height: 150px;
+        margin-top: 70px;
+      }
+      .member-details2{
+        width: 370px;
+        height: 220px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+        margin-left: 40px;
+    }
+}
+@media (min-width: 768px) and (max-width: 810px) and (orientation: landscape) {
+    #text1{
+        font-size: 14px;
+        margin-top: -252px;
+        padding-left: 180px;
+        color: blue;
+    }
+    #withdraw{
+        width: 665px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 30px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 580px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 50px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    .member-details2{
+        width: 300px;
+        height: 210px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+    #ggllogo-img{
+        background-image: url(/assets/images/gglLogo3.jpg);
+        width: 175px;
+        margin-left: 270px;
+        height: 150px;
+        margin-top: 70px;
+      }
+}
+@media (min-width: 810px) and (max-width: 1024px) and (orientation: landscape) {
+    #withdraw{
+        width: 665px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 380px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 580px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 50px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    .member-details2{
+        width: 270px;
+        height: 200px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+}
+@media (min-width: 1025px) and (max-width: 1280px){
+    #withdraw{
+    width: 665px;
+    height:160px;
+    margin-top: 100px;
+    margin-left: 380px;
+    background-color: #9e9e9eb3;
+}
+#withdraw1{
+    width: 580px;
+    height:100px;
+    margin-top: 0px;
+    margin-left: 50px;
+    background-color: #858a85b3;
+    color: white;
+    overflow-y:auto;
+    overflow-x: hidden;
+}
+#member-details{
+    background-color: #9e9e9eb3;
+    height: 450px;
+    width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+.member-details2{
+    width: 270px;
+    height: 200px;
+    background-color: #655d5db3;
+    outline: 1px solid blue;
+    margin: 20px;
+}
+}
+/* Desktop Responsive */
+@media (min-width: 1281px) and (max-width: 1380px) {
+    #withdraw{
+        width: 665px;
+        height:160px;
+        margin-top: 100px;
+        margin-left: 380px;
+        background-color: #9e9e9eb3;
+    }
+    #withdraw1{
+        width: 580px;
+        height:100px;
+        margin-top: 0px;
+        margin-left: 50px;
+        background-color: #858a85b3;
+        color: white;
+        overflow-y:auto;
+        overflow-x: hidden;
+    }
+    #member-details{
+        background-color: #9e9e9eb3;
+        height: 450px;
+        width: 100%;
+        padding-left: 2%;
+        padding-right: 2%;
+    }
+    .member-details2{
+        width: 270px;
+        height: 200px;
+        background-color: #655d5db3;
+        outline: 1px solid blue;
+        margin: 20px;
+    }
+}

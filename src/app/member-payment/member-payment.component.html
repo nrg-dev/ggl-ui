@@ -1,0 +1,186 @@
+<app-memberheader></app-memberheader>
+<div class="col-sm-12 col-lg-12"style="background-image: url('/assets/images/GGL-Background.jpg');height:auto;">
+  <br/><br/><br/><br/><br/>
+  <div class="container">
+    <div class="col-lg-3" style="margin-top: -50px;">
+        <div class="row">
+          <img src="./assets/images/gglLogo.png" style="padding-left: 85px;" />
+        </div>
+        <br/><br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/member-purchaseunit']">
+          <a id="editprofilebutton">
+              <i class="fa fa-shopping-bag" aria-hidden="true"></i> <span style="padding-left: 15px;">Purchase Unit</span> 
+          </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #f7fbfa;padding: 10px;" [routerLink]="['/memberunitstatus']">
+            <a id="myprofilebutton">
+                <i class="fa fa-superpowers" aria-hidden="true"></i> <span style="padding-left: 15px;">My Status</span>        
+            </a>
+        </div>
+        <br/>
+        <div class="row" style="background: #2525af;padding: 10px;" [routerLink]="['/member-payment']">
+          <a id="myprofilebutton" style="color: white;">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span style="padding-left: 15px;">Payment Option</span>        
+          </a>
+      </div>
+    </div>
+
+    <div class="col-lg-9" id="align-table" style="overflow-y: scroll;">
+      <div style="background: #f7fbfa;margin-top: 15px;">
+        <div style="margin-left: 90px;">
+          <br/>
+          <div *ngIf="paymentdiv">
+            <h2 style="color:#0F4FA1;">Choose Your Payment Method</h2>
+            <form name="paymentform" (ngSubmit)="f.form.valid && payment()" #f="ngForm" novalidate>
+              <div class="row" id="payment-div">
+                <br/>
+                <label class="container1">Pay Use Debit
+                    <input type="radio" name="actType" value="debit">
+                    <span class="checkmark" (click)="paydebitcard()"></span>
+                </label>
+                <div *ngIf="debitdiv">
+                  <h5 style="padding-left: 65px;">Different Region Different Payment Transfer Account</h5>
+                  <br/>
+                  <h5 style="padding-left: 65px;">Bank Name</h5>
+                  <div style="padding-left: 65px;color: black;">
+                      <select id="select-box" name="bankName" [(ngModel)]="this.model.bankName" #bankName="ngModel" (change)="afterselect(this.model.bankName)" required>
+                          <option>--- Select Bank ---</option>
+                          <option *ngFor="let itemBank of bankList" value="{{ itemBank }}"> {{ itemBank }} </option> 
+                      </select>
+                      <p style="color: red;">Select a Bank to continue *</p>
+                  </div>
+                </div>
+                <div *ngIf="dbsbankdetails" style="padding-left: 65px;color: black;">
+                    <p>Please make wire transfer manually to our account bellow </p>
+                    <p id="acc-text">Account Number :  003-932398-0 </p>
+                    <p id="acc-text">Account Name : Global Gains Limited</p>
+                    <p id="bank-text">Your Bank Transfer From</p>
+                    <select id="select-box" name ="banktransfer" [(ngModel)]="this.model.banktransfer" #banktransfer="ngModel" (change)="afterselect1()">
+                        <option>--- select Transfer ---</option>
+                        <option value="Bank Central Asia"> Bank Central Asia </option> 
+                    </select>
+                    <p style="color: red">Select a Bank to continue *</p>
+                </div>
+                <div *ngIf="nextdetails" style="padding-left: 65px;color: black;">
+                    <p>Please make wire transfer manually to our account bellow </p>
+                    <!-- <p id="acc-text">Account Number :  003-932398-0  </p> -->
+                    <p id="acc-text">Account Number :  800077326600  </p>
+                    <p id="acc-text">Account Name : Blue Print Nusantara Indonesia</p>
+                    <p id="bank-text">Your Bank Transfer From</p>
+                    <select id="select-box" name ="banktransfer" [(ngModel)]="this.model.banktransfer" #banktransfer="ngModel" (change)="afterselect2()">
+                        <option>--- select Transfer ---</option>
+                        <option *ngFor="let itemBankTrans of bankTransferList" value="{{ itemBankTrans }}"> {{ itemBankTrans }} </option> 
+                    </select>
+                    <p style="color: red">Select a Bank to continue *</p>
+                </div>
+                <div *ngIf="bankdetails2" style="padding-left: 65px;color: black;">
+                  <div class="row">
+                    <div class="col-lg-4">
+                        <p id="bank-text">Bank Account Name </p>
+                        <input type="text" name ="username" [(ngModel)]="this.model.username" #username="ngModel" id="box-input" />
+                    </div>
+                    <div class="col-lg-4">
+                        <p id="bank-text">Bank Account Number</p>
+                    <input type="number" name ="bankAcctNumber" [(ngModel)]="this.model.bankAcctNumber" #bankAcctNumber="ngModel" id="box-input" />
+                    </div>
+                  </div>  
+                  <br/><br/><br/>
+                  <div>
+                    <p id="bank-text"> Upload Your Transfer Recipient </p>
+                    <p>File Jpg/Png*</p>
+                  </div>
+                  <div *ngIf="currentFileUpload" class="progress" style="display: none;">
+										<div class="progress-bar progress-bar-info progress-bar-striped"
+											role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+											aria-valuemin="0" aria-valuemax="100"
+											[ngStyle]="{width:progress.percentage+'%'}"> {{progress.percentage}}% 
+										</div>  
+                  </div>
+                  
+                  <label  for="c"> </label>
+                  <input type="file" class="form-control" (change)="uploadPayment($event)" style="width: 310px;">
+                  <br/>
+                    
+                </div>
+                <br/>
+              </div>
+              <br/>
+              <div style="text-align:center" *ngIf="buttondiv">  
+                  <button class="submitButton">Confirm</button>
+              </div>
+            </form>
+            <br/>
+            <div class="row" id="payment-div">
+              <br/>
+              <label class="container1">Pay Use Credit
+                  <input type="radio" name="actType" value="credit">
+                  <span class="checkmark" (click)="paycreditcard()"></span>
+              </label>
+            </div>
+          </div>
+          
+          <div *ngIf="creditdiv">
+            <br/><br/>
+            <div style="padding-left: 600px;">
+                <a (click)="creditBack()" class="details">Back</a> 
+            </div>
+            <br/><br/>
+            <div class="col-lg-2">
+              <br/><br/><br/>
+              <div  style="background-image: url('./assets/images/maintenance-512.jpg');margin-top: 60px;height: 100px;width: 100px;"></div>
+            </div>
+            <br/><br/><br/><br/>
+            <div class="col-lg-10" style="margin-top: 60px;">
+              <h2 style="color: black;">Sorry, we are under maintance! </h2>
+              <h2 style="color: black;">We will back soon, contact us for support</h2>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <br/><br/><br/>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':networkissue}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content"> 
+        <div id="box-dialouge2"><i class="fa fa-exclamation" aria-hidden="true" id="icon-font2"></i></div> 
+        <br/><br/><br/><br/>
+        <p id="p-text">Network Issue Please try again.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+      </div>
+    </div>
+</div>
+
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':successDialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <h2 style="text-align: center;">Success</h2>
+        <br/>
+        <p id="p-text">Your file is succesfully uploaded </p>
+        <p id="p-text">We will check it and notify u by email shortly </p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':failuredialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+      <br/>
+      <h2 style="text-align: center;">Failure</h2>
+      <br/><br/>
+      <p id="p-text">Your file was not uploaded</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>

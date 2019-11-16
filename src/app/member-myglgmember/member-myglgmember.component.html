@@ -1,0 +1,93 @@
+<app-memberheader></app-memberheader>
+<!-- Loading Image Start -->
+<div class="row">
+  <div class="col-md-5 col-xs-5 col-lg-5">			
+    <img *ngIf="loadinggif" class="loadingimage" src="/assets/images/loadingimage.gif"/> 
+  </div>
+  <div class="col-md-7 col-xs-7 col-lg-7">
+  </div>
+</div>
+<!-- Loading Image End -->
+<div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" *ngIf="menu4" style="background-image: url('/assets/images/bg-myprofile.jpg');height:767px;">
+  <div id="ggllogo-img"></div>
+  <div id="withdraw"> 
+    <label id="text">Recent updates</label>
+      <div id="withdraw1" style="overflow-y:auto;overflow-x: auto;">
+        <div class="row" id="update" *ngFor="let x of showMyMemList">
+            <div class="col-md-5 col-xs-5 col-lg-3">{{ x.created_date }}</div>
+            <div class="col-md-1 col-xs-1 col-lg-1"></div>
+            <div class="col-md-7 col-xs-7 col-lg-4">{{ x.username }} join us </div>	
+        </div>
+      </div>
+  </div>
+  <div class="col-md-12 col-xs-1 col-lg-5"></div>
+  <div class="col-md-12 col-xs-1 col-lg-3"></div>
+  <p id="text1" class="col-md-12 col-xs-10 col-lg-4">Global Gain Limited</p>
+  <br/>
+  <div id="member-details">
+    <br/>
+    <div id="member-details1" style="overflow: auto">  
+      <div *ngFor="let x of showMyMemList">  
+        <ul class="member-details2">
+          <br/>
+          <li> <h4 style="color:white;"> Member Name </h4> </li>
+          <li> <label style="color:white;">{{ x.memberName }}</label> </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Phone</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-3 col-xs-3 col-lg-4">{{ x.memberPhone }}</div>					
+              </div>
+          </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">EmailID</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-7 col-xs-7 col-lg-4">{{ x.memberEmail }}</div>					
+              </div>
+          </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">MemberID</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-3 col-xs-3 col-lg-4">{{ x.memberID }}</div>					
+              </div>
+          </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Overriding</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-3 col-xs-3 col-lg-4">{{ x.memberOvrriding }}</div>					
+              </div>
+          </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Commission</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-3 col-xs-3 col-lg-4">{{ x.memberCommition }}</div>					
+              </div>
+          </li>
+          <li>
+              <div class="row">
+                <div class="col-md-5 col-xs-5 col-lg-3">Status</div>
+                <div class="col-md-1 col-xs-1 col-lg-1">:</div>
+                <div class="col-md-3 col-xs-3 col-lg-4">{{ x.memberStatus }}</div>					
+              </div>
+          </li>
+        </ul>
+        <br/>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':nodatadialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div id="box-dialouge"><i class="fa fa-ban" aria-hidden="true" id="icon-font"></i></div>
+        <br/><br/>
+        <p id="p-text">No Data for Information ....</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+    </div>
+  </div>
+</div>
