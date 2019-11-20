@@ -57,6 +57,7 @@
                                 <input type="checkbox" value="Remember me" />
                                 <label for="Remember me" class="forgot">Remember me</label>
                                 <a (click)="forgetPassword()" class="forgot">Forget Password ?</a>
+                                <a (click)="uploadYourPayment()" class="payment">Upload Your Payment</a>
                             </div>
                         </div>
                     </form>
@@ -766,3 +767,76 @@
     </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':paymentDialog}" style="margin-top:7%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content3">
+            <div class="modal-header">
+                <h4 class="paymentlabel">Upload Your Reciept
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><i class="fa fa-times" style="color:white;" aria-hidden="true"></i></button>
+                </h4>
+            </div>
+            <br/><br/>
+            <div *ngIf="currentFileUpload" class="progress">
+                <div class="progress-bar progress-bar-info progress-bar-striped" style="width: auto;"
+                    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                    aria-valuemin="0" aria-valuemax="100"
+                    [ngStyle]="{width:progress.percentage+'%'}">
+                    {{progress.percentage}}%</div>
+            </div>
+            <br/>
+            <div class="form-group" style="margin: auto;" [ngClass]="{ 'has-error': f.submitted && !banktransfer.valid }">
+                    <label for="banktransfer" style="margin-left: 40px;">Your Bank Transfer Form*</label>
+                    <input type="text" class="form-control" style="width: 263px;margin-left: 40px;margin-bottom: 0px;" name="banktransfer" [(ngModel)]="model.banktransfer" 
+                        #banktransfer="ngModel" required />
+                    <div *ngIf="f.submitted && !banktransfer.valid" class="help-block" style="margin-left: 40px;">Bank Transfer is required</div>
+            </div>
+              <form name="form" (ngSubmit)="f.form.valid && upload()" #f="ngForm" novalidate>
+                <div class="col-sm-8">
+                    <alert></alert>
+                    
+                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !memberID.valid }">
+                        <label for="memberID" style="margin-left: 25px;">Member ID*</label>
+                        <input type="text" class="form-control" style="width: 263px;margin-left: 25px;margin-bottom: 0px;" name="memberID" [(ngModel)]="model.memberID" 
+                            #memberID="ngModel" required />
+                        <div *ngIf="f.submitted && !memberID.valid" class="help-block" style="margin-left: 25px;">Member ID is required</div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="c" style="margin-left: 25px;"> Upload Your Transfer Recipient File Jpg/Png*</label>
+                        <input type="file" (change)="selectFile($event)" class="form-control" style="width: 263px;margin-left: 25px;">
+                        <br/><br/><br/>
+                    </div>
+                    
+                    <div class="form-group" style="margin-left: 6px;margin-top: -33px;">
+                        <button class="uploadButton" [disabled]="!selectedFiles">Continue</button>
+                    </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':paymentSuccess}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1" style="background: white;">
+            <div id="box-dialouge"><i class="fa fa-check" aria-hidden="true" id="icon-font"></i></div>
+            <br/><br/>
+            <h2 style="text-align: center;">Success</h2>
+            <br/>
+            <p id="p-text">Payment Upload is completed... </p>
+            <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Continue</button>
+        </div>
+    </div>
+</div>
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':memberIDNonValiddialog}" style="margin-top:9%;">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content1">
+        <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+        <br/>
+        <h2 style="text-align: center;">Failure</h2>
+        <br/><br/>
+        <p id="p-text">Given Member is not Valid Please check.</p>
+        <button type="button" class="btn btn-default" class="success" (click)="onClosedDialog()" id="close-button">Close</button>
+        </div>
+    </div>
+</div>

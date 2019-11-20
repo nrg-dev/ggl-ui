@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HttpResponse, HttpEventType } from '@angular/common/http';
+import { HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, AuthenticationService, UserService } from '../_services/index';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
@@ -19,10 +19,14 @@ export class MemberPaymentComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: File;
   progress: { percentage: number } = { percentage: 0 };
+  invoiceNumber: string;
+  treeName: string;
 
   successDialog = 'none';
   networkissue = 'none';
   failuredialog = 'none';
+  errordialog = 'none';
+  
   public paymentdiv = false;
   public debitdiv = false;
   public creditdiv =  false;
@@ -90,6 +94,7 @@ export class MemberPaymentComponent implements OnInit {
     this.successDialog = 'none';
     this.networkissue = 'none';
     this.failuredialog = 'none';
+    this.errordialog = 'none';
   }
 
   afterselect(adminbankName:string){
@@ -143,24 +148,51 @@ export class MemberPaymentComponent implements OnInit {
   }
 
   uploadPayment(event:any){
-    const file = event.target.files.item(0);
-    if (file.type.match('image.*')) {
-      this.selectedFiles = event.target.files;
-      this.progress.percentage = 0;
-      this.currentFileUpload = this.selectedFiles.item(0);
-      var memberID = localStorage.getItem("memberNumber");
-      this.uploadService.pushFileToStorage(this.currentFileUpload,memberID).subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {       
-            this.progress.percentage = Math.round(100 * event.loaded / event.total);
-        } else if (event instanceof HttpResponse) {
-            console.log('File is completely uploaded!'+event.status);
-        }   
-      });
-      this.selectedFiles = undefined; 
-    } else {
-      alert('Invalid format!');
-    }
+    this.uploadService.getValidateTempTree(this.model.invoiceNumber,this.model.treeName)
+    .subscribe(
+      memberResponse => {
+        this.user = memberResponse;
+        console.log("Response message -------------------->", this.user.status); 
+        if(this.user.status=="Valid"){
+          console.log('Invoice Number -->'+this.model.invoiceNumber);
+          console.log('Tree Name -->'+this.model.treeName);
+          this.progress.percentage = 0;
+          this.invoiceNumber = this.model.invoiceNumber;
+          this.treeName = this.model.treeName;
+          this.currentFileUpload = this.selectedFiles.item(0);
 
+          this.uploadService.storeImage(this.currentFileUpload,this.invoiceNumber,this.treeName).subscribe(event => {
+            if (event.type === HttpEventType.UploadProgress) {       
+              this.progress.percentage = Math.round(100 * event.loaded / event.total);
+              console.log('---------Inside If--------------');
+    
+            } else if (event instanceof HttpResponse) {
+              console.log('File is completely uploaded!'+event.status);
+              if(event.status==200){
+                this.selectedFiles=undefined;
+                this.currentFileUpload=undefined;
+                this.invoiceNumber='';
+                this.treeName='';
+                this.successDialog ='block';
+              }
+              else {
+                this.failuredialog ='block';
+              }
+            }
+            
+            else if(event instanceof HttpErrorResponse){
+                this.failuredialog ='block';
+            }
+          });
+          this.selectedFiles = undefined;
+        } 
+        if(this.user.status=="InValid"){
+            this.errordialog = 'block';
+        }                    
+      },
+      error => {
+        this.networkissue = 'block';
+      }); 
   }
 
   payment(){
@@ -168,6 +200,8 @@ export class MemberPaymentComponent implements OnInit {
     console.log("Transfer Bank Name -->"+this.model.banktransfer);
     console.log("Transfer Account Name -->"+this.model.username);
     console.log("Transfer Account Number -->"+this.model.bankAcctNumber);
+    console.log("Tree Name -->"+this.model.treeName);
+    console.log("Invoice Number -->"+this.model.invoiceNumber);
     if(this.model.bankName == "CIMB NIAGA"){
       this.model.adminacctNumber = "800077326600";
       this.model.adminacctName = "Blue Print Nusantara Indonesia";

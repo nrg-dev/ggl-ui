@@ -85,6 +85,23 @@
                     <input type="number" name ="bankAcctNumber" [(ngModel)]="this.model.bankAcctNumber" #bankAcctNumber="ngModel" id="box-input" />
                     </div>
                   </div>  
+                  <br/>
+                  <div class="row">
+                      <div class="col-lg-4">
+                          <p id="bank-text">Tree Name </p>
+                          <select class="form-control" name="treeName" id="box-input" [(ngModel)]="model.treeName" #treeName="ngModel" required>
+                            <option value="publicTree">Public Tree</option>
+                            <option value="privateTree">Private Tree</option>
+                            <option value="ownTree">Own Tree</option>
+                            <option value="miniTree">Mini Tree</option>
+                          </select>
+                      </div>
+                      <div class="col-lg-4">
+                          <p id="bank-text">Invoice Number</p>
+                          <input type="text" class="form-control" id="box-input" name="invoiceNumber" [(ngModel)]="model.invoiceNumber"  #invoiceNumber="ngModel" required />
+                      </div>
+                  </div>  
+
                   <br/><br/><br/>
                   <div>
                     <p id="bank-text"> Upload Your Transfer Recipient </p>
@@ -180,6 +197,19 @@
       <h2 style="text-align: center;">Failure</h2>
       <br/><br/>
       <p id="p-text">Your file was not uploaded</p>
+      <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':errordialog}" style="margin-top:9%;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div id="box-dialouge1"><i class="fa fa-times" aria-hidden="true" id="icon-font1"></i></div>
+      <br/>
+      <h2 style="text-align: center;">Failure</h2>
+      <br/><br/>
+      <p id="p-text">Invoice Number or Tree Number is not Valid.</p>
       <button type="button" class="btn btn-default" class="success" (click)="onCloseHandled()" id="close-button">Close</button>
     </div>
   </div>

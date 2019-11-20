@@ -40,7 +40,12 @@
     width: 250px;
     margin-left: 20px;
 }
-
+.payment{
+    font-size: 14px;
+    font-weight: normal;
+    color: #0078D7;
+    margin-left: -28px;
+}
 .success {
 	color:#fff;
     padding: 6px 12px;
@@ -773,4 +778,30 @@
         width: 296px;
         height: 305px;
     }
+}
+
+.modal-content3 {
+    overflow:hidden;
+    height: 480px;
+    width: 350px;
+    margin-top: 250px;
+    background: #f2f2f9;
+}
+
+.modal-header{
+    height: 60px;
+    width: auto;
+    background: #082d96;
+}
+
+.paymentlabel{
+    text-align: center;   
+    color: white;
+}
+
+.uploadButton{
+    background-color: #082d96;
+    color: white;
+    width: 135px;
+    margin-left: 85px;
 }

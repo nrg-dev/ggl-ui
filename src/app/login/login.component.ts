@@ -1,7 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/index';
-import { HttpResponse, HttpEventType } from '@angular/common/http';
+import { HttpResponse, HttpEventType, HttpErrorResponse } from '@angular/common/http';
 import { AlertService, AuthenticationService, UserService } from '../_services/index';
 import { IfObservable } from 'rxjs/observable/IfObservable';
 
@@ -57,10 +57,16 @@ export class LoginComponent implements OnInit {
     userExsistdialog = 'none';
     memberIDNotValiddialog = 'none';
     accTypeissue = 'none';
+    paymentDialog = "none";
     public paydiv = false;
     public paymentBack = true;
     public creditback = false;
     public finishdiv = true;
+
+    public payUpload = false;
+    paymentSuccess = 'none';
+    memberIDNonValiddialog = 'none';
+    memberID: string;
 
     location: Location;
     constructor(
@@ -265,6 +271,8 @@ export class LoginComponent implements OnInit {
         this.userExsistdialog = 'none';
         this.memberIDNotValiddialog = 'none';
         this.accTypeissue = 'none';
+        this.paymentDialog = "none";
+        this.paymentSuccess = 'none';
     }
 
     Signupdialouge(){
@@ -531,6 +539,91 @@ export class LoginComponent implements OnInit {
 
         });     
     }
+
+    uploadYourPayment(){
+        this.paymentDialog = "block";
+        this.payUpload=true;
+        this.selectedFiles=undefined;
+        this.currentFileUpload=undefined;
+        this.model.memberID = '';
+        this.model.banktransfer = '';
+    }
+
+    selectFile(event:any) {
+        const file = event.target.files.item(0);
+    
+        if (file.type.match('image.*')) {
+          this.selectedFiles = event.target.files;
+        } else {
+          alert('invalid format!');
+        }
+      }
+    
+      upload() {
+        this.authenticationService.getMemberIDValidate(this.model.memberID)
+        .subscribe(
+          memberResponse => {
+            this.user = memberResponse;
+            console.log("Response message -------------------->", this.user.status); 
+            if(this.user.status=="Valid"){
+              console.log('Member ID -->'+this.model.memberID);
+              this.progress.percentage = 0;
+              this.memberID = this.model.memberID;
+              this.currentFileUpload = this.selectedFiles.item(0);
+    
+              this.authenticationService.pushFileToStorage(this.currentFileUpload,this.memberID).subscribe(event => {
+                if (event.type === HttpEventType.UploadProgress) {       
+                  this.progress.percentage = Math.round(100 * event.loaded / event.total);
+                  console.log('---------Inside If--------------');
+        
+                } else if (event instanceof HttpResponse) {
+                  console.log('File is completely uploaded!'+event.status);
+                  if(event.status==200){
+                    this.selectedFiles=undefined;// FileList;
+                    this.currentFileUpload=undefined;//: File;
+                    this.memberID='';//: string;
+                    this.paymenyUpload();
+                  }
+                  else {
+                    this.memberIDNonValiddialog ='block';
+                  }
+                }
+                else if(event instanceof HttpErrorResponse){
+                    this.memberIDNonValiddialog ='block';
+        
+                }
+              });
+              this.selectedFiles = undefined;
+    
+          } 
+            if(this.user.status=="InValid"){
+               this.memberIDNonValiddialog = 'block';
+            }                    
+          },
+          error => {
+            this.networkissue = 'block';
+          }); 
+    
+      }
+      onClosedDialog(){
+          this.memberIDNonValiddialog = 'none';
+      }
+
+      paymenyUpload(){
+        this.userService.memberPayment(this.model)
+        .subscribe(
+          data => {
+            this.user = data;
+            if(this.user.status=='success'){
+                this.paymentSuccess ='block';
+            }else if(this.user.status=='failure'){
+              this.errordialog = "block";
+            }
+          },
+          error => {
+              this.networkissue = "block";
+          }); 
+      }
     
 
 }
