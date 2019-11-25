@@ -32,7 +32,7 @@
           <br/>
           <div *ngIf="paymentdiv">
             <h2 style="color:#0F4FA1;">Choose Your Payment Method</h2>
-            <form name="paymentform" (ngSubmit)="f.form.valid && payment()" #f="ngForm" novalidate>
+            <form name="paymentform" (ngSubmit)="f.form.valid && uploadPayment()" #f="ngForm" novalidate>
               <div class="row" id="payment-div">
                 <br/>
                 <label class="container1">Pay Use Debit
@@ -82,43 +82,48 @@
                     </div>
                     <div class="col-lg-4">
                         <p id="bank-text">Bank Account Number</p>
-                    <input type="number" name ="bankAcctNumber" [(ngModel)]="this.model.bankAcctNumber" #bankAcctNumber="ngModel" id="box-input" />
+                        <input type="number" name ="bankAcctNumber" [(ngModel)]="this.model.bankAcctNumber" #bankAcctNumber="ngModel" id="box-input" />
                     </div>
                   </div>  
                   <br/>
-                  <div class="row">
-                      <div class="col-lg-4">
-                          <p id="bank-text">Tree Name </p>
-                          <select class="form-control" name="treeName" id="box-input" [(ngModel)]="model.treeName" #treeName="ngModel" required>
-                            <option value="publicTree">Public Tree</option>
-                            <option value="privateTree">Private Tree</option>
-                            <option value="ownTree">Own Tree</option>
-                            <option value="miniTree">Mini Tree</option>
-                          </select>
-                      </div>
-                      <div class="col-lg-4">
-                          <p id="bank-text">Invoice Number</p>
-                          <input type="text" class="form-control" id="box-input" name="invoiceNumber" [(ngModel)]="model.invoiceNumber"  #invoiceNumber="ngModel" required />
-                      </div>
-                  </div>  
-
-                  <br/><br/><br/>
-                  <div>
-                    <p id="bank-text"> Upload Your Transfer Recipient </p>
-                    <p>File Jpg/Png*</p>
-                  </div>
-                  <div *ngIf="currentFileUpload" class="progress" style="display: none;">
-										<div class="progress-bar progress-bar-info progress-bar-striped"
-											role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
-											aria-valuemin="0" aria-valuemax="100"
-											[ngStyle]="{width:progress.percentage+'%'}"> {{progress.percentage}}% 
-										</div>  
-                  </div>
-                  
-                  <label  for="c"> </label>
-                  <input type="file" class="form-control" (change)="uploadPayment($event)" style="width: 310px;">
-                  <br/>
                     
+                  <div *ngIf="currentFileUpload" class="progress">
+                    <div class="progress-bar progress-bar-info progress-bar-striped"
+                      role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                      aria-valuemin="0" aria-valuemax="100"
+                      [ngStyle]="{width:progress.percentage+'%'}">
+                      {{progress.percentage}}%</div>
+                  </div>
+                  <br/><br/>
+                  <div class="row">
+                    <div class="col-lg-4" [ngClass]="{ 'has-error': f.submitted && !invoiceNumber.valid }">
+                        <p id="bank-text">Tree Name </p>
+                        <select name="treeName"  id="box-input" [(ngModel)]="model.treeName" #treeName="ngModel" (change)="treechange()" required>
+                          <option value="publicTree">Public Tree</option>
+                          <option value="privateTree">Private Tree</option>
+                          <option value="ownTree">Own Tree</option>
+                          <option value="miniTree">Mini Tree</option>
+                        </select>
+                        <div *ngIf="f.submitted && !treeName.valid" class="help-block" style="margin-left: 5px;">Tree Name is required</div>
+                      </div>
+                      <div class="col-lg-4">
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !invoiceNumber.valid }">
+                          <p id="bank-text">Invoice Number</p>
+                          <input type="text" name ="invoiceNumber" [(ngModel)]="this.model.invoiceNumber" #invoiceNumber="ngModel" id="box-input" (change)="uploaddivcall()" />
+                          <!--<select id="select-box" name ="invoiceNumber" [(ngModel)]="this.model.invoiceNumber" #invoiceNumber="ngModel" (change)="uploaddivcall()">
+                            <option>--- select Invoice ---</option>
+                            <option *ngFor="let itemInvoice of invoiceList" value="{{ itemInvoice }}"> {{ itemInvoice }} </option> 
+                          </select>-->
+                          <div *ngIf="f.submitted && !invoiceNumber.valid" class="help-block" style="margin-left: 5px;">Invoice Number is required</div>
+                      </div>
+                    </div> 
+                  </div>
+                  <div class="form-group" *ngIf="uploaddiv">
+                      <label  for="c"> </label>
+                      <input type="file" (change)="selectFile($event)" class="form-control" style="width: 263px;margin-left: 4px;">
+                      <br/><br/><br/>
+                  </div>
+                          
                 </div>
                 <br/>
               </div>

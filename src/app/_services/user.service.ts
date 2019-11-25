@@ -382,4 +382,20 @@ export class UserService {
     getrandomNumber(){
         return this.http.get<User>(this.commonURL+'getrandomNumber');
     }
+
+    //getInvoiceNumber(treeName:string){
+       /*console.log("Tree Name -->"+treeName);
+        if(treeName == "publicTree"){ */
+           // return this.http.get(this.commonURL+'getPublicInvoiceNumber');
+        /*}
+        else if(treeName == "privateTree"){
+            return this.http.get<User>(this.commonURL+'getPrivateInvoiceNumber');
+        }
+        else if(treeName == "ownTree"){
+            return this.http.get<User>(this.commonURL+'getOwnInvoiceNumber');
+        }
+        else if(treeName == "miniTree"){
+            return this.http.get<User>(this.commonURL+'getMiniInvoiceNumber');
+        }*/
+    //}
 }

@@ -15,6 +15,7 @@ export class MemberPaymentComponent implements OnInit {
   user:User;
   bankList: any = {};  
   bankTransferList:  any ={};
+  invoiceList : any = {};
 
   selectedFiles: FileList;
   currentFileUpload: File;
@@ -34,6 +35,7 @@ export class MemberPaymentComponent implements OnInit {
   public bankdetails2 = false;
   public buttondiv = false;
   public dbsbankdetails = false;
+  public uploaddiv = false;
 
   constructor(
     private uploadService: AuthenticationService , 
@@ -65,6 +67,7 @@ export class MemberPaymentComponent implements OnInit {
     this.bankdetails2 = false;
     this.buttondiv = false;
     this.dbsbankdetails = false;
+    this.uploaddiv = false;
   }
 
   paycreditcard(){
@@ -75,6 +78,7 @@ export class MemberPaymentComponent implements OnInit {
     this.bankdetails2 = false;
     this.buttondiv = false;
     this.dbsbankdetails = false;
+    this.uploaddiv = false;
   }
 
   creditBack(){
@@ -85,6 +89,7 @@ export class MemberPaymentComponent implements OnInit {
     this.bankdetails2 = false;
     this.buttondiv = false;
     this.dbsbankdetails = false;
+    this.uploaddiv = false;
     
     this.model.bankName = '';
     this.model.banktransfer = '';
@@ -103,6 +108,7 @@ export class MemberPaymentComponent implements OnInit {
     this.creditdiv = false;
     this.debitdiv = true;
     this.paymentdiv = true;
+    this.uploaddiv = false;
     if(adminbankName == "CIMB NIAGA"){
       this.nextdetails = true;
       this.dbsbankdetails = false;
@@ -131,8 +137,11 @@ export class MemberPaymentComponent implements OnInit {
     this.bankdetails2 = true;
     this.buttondiv = true;
     this.dbsbankdetails = true;
+    this.uploaddiv = false;
     this.model.username = '';
     this.model.bankAcctNumber = '';
+    this.model.treeName = '';
+    this.model.invoiceNumber = '';
   }
 
   afterselect2(){
@@ -143,11 +152,24 @@ export class MemberPaymentComponent implements OnInit {
     this.bankdetails2 = true;
     this.buttondiv = true;
     this.dbsbankdetails = false;
+    this.uploaddiv = false;
     this.model.username = '';
     this.model.bankAcctNumber = '';
   }
 
-  uploadPayment(event:any){
+  selectFile(event:any) {
+    const file = event.target.files.item(0);
+
+    if (file.type.match('image.*')) {
+      this.selectedFiles = event.target.files;
+    } else {
+      alert('invalid format!');
+    }
+  }
+
+  uploadPayment(){
+    console.log('Invoice Number -->'+this.model.invoiceNumber);
+    console.log('Tree Name -->'+this.model.treeName);
     this.uploadService.getValidateTempTree(this.model.invoiceNumber,this.model.treeName)
     .subscribe(
       memberResponse => {
@@ -164,7 +186,7 @@ export class MemberPaymentComponent implements OnInit {
           this.uploadService.storeImage(this.currentFileUpload,this.invoiceNumber,this.treeName).subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {       
               this.progress.percentage = Math.round(100 * event.loaded / event.total);
-              console.log('---------Inside If--------------');
+              console.log('--------- Inside If--------------');
     
             } else if (event instanceof HttpResponse) {
               console.log('File is completely uploaded!'+event.status);
@@ -174,6 +196,7 @@ export class MemberPaymentComponent implements OnInit {
                 this.invoiceNumber='';
                 this.treeName='';
                 this.successDialog ='block';
+                this.payment();
               }
               else {
                 this.failuredialog ='block';
@@ -226,5 +249,26 @@ export class MemberPaymentComponent implements OnInit {
           this.networkissue = "block";
       });  
   }
+
+  uploaddivcall(){
+    this.uploaddiv = true;
+  }
+
+  /*treechange(){
+    this.userService.getInvoiceNumber(this.model.treeName)
+    .subscribe(
+      data => {
+          this.invoiceList = data;
+          if(this.invoiceList.length==0){
+            alert("------ No Invoice Number ------")
+          }else{
+            alert("--------- Got InvoiceNuber -------")
+          }
+      },
+      error => {
+          this.networkissue = "block";
+      }
+    );
+  }*/
 
 }
